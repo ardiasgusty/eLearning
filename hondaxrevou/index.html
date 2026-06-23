@@ -3,40 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Honda Bintaro - Product Lineup</title>
+    <title>RevoU X HPM - Digital Dealer Training 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* === CSS VARIABLES (THEME MANAGEMENT) === */
         :root {
             /* Light / Normal Mode */
-            --bg-body: #f8f9fa;
-            --bg-card: #ffffff;
-            --bg-callout: #f1f3f5;
-            --text-main: #212529;
-            --text-muted: #6c757d;
-            --border-color: #e9ecef;
-            --primary-red: #cc0000;
-            --primary-hover: #a30000;
-            --badge-bg: #e9ecef;
-            --badge-text: #495057;
-            --shadow: 0 4px 6px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
-            --shadow-hover: 0 10px 20px rgba(0,0,0,0.08);
+            --bg-body: #ffffff;
+            --bg-card: #f7f7f5;
+            --bg-callout: #fbfbfa;
+            --text-main: #37352f;
+            --text-muted: #787774;
+            --border-color: #e9e9e7;
+            --red-brand: #cc0000;
+            --red-gradient: linear-gradient(135deg, #e60000 0%, #a30000 100%);
+            --badge-bg: #ffebe5;
+            --badge-text: #cc0000;
+            --shadow: 0 4px 6px rgba(0,0,0,0.02);
+            --shadow-hover: 0 10px 20px rgba(0,0,0,0.05);
+            --btn-hover: #f1f1ef;
         }
 
         [data-theme="dark"] {
-            /* Night Mode (Soft Dark, tidak hitam pekat) */
-            --bg-body: #1e1e1e;
-            --bg-card: #2d2d2d;
-            --bg-callout: #373737;
-            --text-main: #f8f9fa;
-            --text-muted: #b2b2b2;
-            --border-color: #3d3d3d;
-            --primary-red: #ff3333;
-            --primary-hover: #ff6666;
-            --badge-bg: #3d3d3d;
-            --badge-text: #e0e0e0;
+            /* Night Mode (Soft Dark, ala Notion Dark) */
+            --bg-body: #191919;
+            --bg-card: #252525;
+            --bg-callout: #2c2c2c;
+            --text-main: #e8e8e8;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+            --red-brand: #ff4d4d;
+            --red-gradient: linear-gradient(135deg, #ff4d4d 0%, #cc0000 100%);
+            --badge-bg: #3a1a1a;
+            --badge-text: #ff6b6b;
             --shadow: 0 4px 6px rgba(0,0,0,0.2);
             --shadow-hover: 0 10px 20px rgba(0,0,0,0.4);
+            --btn-hover: #333333;
         }
 
         /* === GLOBAL STYLES === */
@@ -44,7 +46,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
@@ -52,59 +54,70 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-            padding-bottom: 60px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* === TOP RED BANNER === */
+        .top-banner {
+            background: var(--red-gradient);
+            height: 120px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+        .top-banner::after {
+            content: '';
+            position: absolute;
+            right: -50px;
+            top: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        .banner-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            z-index: 2;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
-        /* === HEADER SECTION === */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .brand h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-        }
-        .brand h1 span {
-            color: var(--primary-red);
-        }
-        .brand p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Night Mode Toggle Button */
+        /* Night Mode Toggle Button (Floating) */
         .theme-toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: var(--shadow);
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 100;
         }
-        .theme-toggle-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
+        .theme-toggle-btn:hover { transform: scale(1.05); }
 
-        /* === SPA VIEW TRANSITIONS === */
+        /* === VIEW SWITCHING MECHANISM (SPA) === */
         .view-section {
             display: none;
             animation: fadeIn 0.4s ease-in-out forwards;
@@ -118,377 +131,359 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === MAIN VIEW: CATALOG GRID === */
-        .product-grid {
+        /* === DASHBOARD LAYOUT === */
+        .main-top-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
         }
 
-        .product-card {
+        @media (max-width: 768px) {
+            .main-top-grid { grid-template-columns: 1fr; }
+        }
+
+        .sidebar-links h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .notion-callout {
+            background-color: var(--bg-callout);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .notion-link-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .notion-link-card:hover { background-color: var(--btn-hover); }
+
+        .welcome-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        /* Accordion / Toggle List Style */
+        details {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        summary {
+            padding: 12px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background-color: var(--bg-callout);
+        }
+        details div {
+            padding: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+        details ul { padding-left: 20px; color: var(--text-muted); }
+
+        /* === SESSIONS GRID === */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .session-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .session-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
+            box-shadow: var(--shadow);
         }
-        .product-card:hover {
-            transform: translateY(-5px);
+        .session-card:hover {
             box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
         }
 
-        .card-img-wrapper {
-            position: relative;
-            padding-top: 60px;
-            background-color: #eaeaea;
-            overflow: hidden;
-            height: 180px;
-        }
-        .card-img-wrapper img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .card-banner {
+            background: var(--red-gradient);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 15px;
         }
 
-        .card-body {
+        .card-content {
             padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
-
         .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .card-price {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: var(--primary-red);
             margin-bottom: 15px;
+            line-height: 1.4;
         }
-
-        .card-specs {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: auto;
-        }
-        .spec-badge {
+        .card-meta { margin-top: auto; }
+        .badge {
+            display: inline-block;
             background-color: var(--badge-bg);
             color: var(--badge-text);
             font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 500;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
         }
+        .card-date { font-size: 0.85rem; color: var(--text-muted); }
 
         /* === DETAIL VIEW === */
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 18px;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            box-shadow: var(--shadow);
-        }
-        .back-btn:hover { background-color: var(--bg-callout); }
-
-        .detail-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        @media (min-width: 768px) {
-            .detail-layout {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .detail-gallery img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            object-fit: cover;
-        }
-
-        .detail-info h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .price-box {
-            background-color: var(--bg-callout);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-        }
-        .price-box div {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 0.95rem;
-        }
-        .price-box div:last-child { margin-bottom: 0; }
-        .price-box .main-p {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-red);
-        }
-
-        .variant-box {
-            margin-bottom: 25px;
-        }
-        .variant-box h4 { margin-bottom: 8px; font-size: 0.95rem; color: var(--text-muted); }
-        .variant-list {
-            list-style: none;
-        }
-        .variant-list li {
-            padding: 8px 12px;
+            padding: 8px 16px;
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-        }
-
-        .rich-description {
-            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
             color: var(--text-main);
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
+            margin-bottom: 30px;
         }
-        .rich-description p { margin-bottom: 12px; }
-        .rich-description b { color: var(--primary-red); }
+        .back-btn:hover { background-color: var(--btn-hover); }
 
-        /* Loading & Error States */
-        .status-msg {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
+        .detail-header { margin-bottom: 35px; }
+        .detail-title { font-size: 2rem; margin-bottom: 15px; line-height: 1.3; }
+        
+        .meta-table { border-collapse: collapse; width: 100%; max-width: 400px; font-size: 0.9rem; }
+        .meta-table td { padding: 6px 0; color: var(--text-muted); }
+        .meta-table td:first-child { width: 120px; }
 
-        /* Mobile Friendly Adjustments */
-        @media (max-width: 576px) {
-            header { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .theme-toggle-btn { align-self: flex-end; margin-top: -40px; }
-            .detail-info h2 { font-size: 1.5rem; }
+        .content-section { margin-bottom: 35px; }
+        .content-section h3 { font-size: 1.3rem; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border-color); }
+
+        .rich-box { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; }
+        .rich-box ul { padding-left: 20px; }
+        .rich-box li { margin-bottom: 8px; }
+
+        .speaker-profile { display: flex; gap: 20px; align-items: flex-start; }
+        .speaker-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color); }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; background-color: #000; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .status-msg { text-align: center; padding: 40px; color: var(--text-muted); }
+
+        @media (max-width: 600px) {
+            .speaker-profile { flex-direction: column; align-items: center; text-align: center; }
+            .detail-title { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <div class="brand">
-                <h1>Honda <span>Bintaro</span></h1>
-                <p>Katalog Produk Digital & Lineup Unit</p>
-            </div>
-            <button id="theme-toggle" class="theme-toggle-btn">
-                <span id="theme-icon">🌙</span> <span id="theme-text">Night Mode</span>
-            </button>
-        </header>
+    <div class="top-banner">
+        <div class="banner-title">Digital Dealer Training 2026</div>
+    </div>
 
-        <main id="view-catalog" class="view-section active">
-            <div class="product-grid" id="catalog-container">
-                <p class="status-msg">Memuat data produk Honda...</p>
+    <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Mode">🌙</button>
+
+    <div class="container">
+        
+        <main id="view-main" class="view-section active">
+            <div class="main-top-grid">
+                <div class="sidebar-links">
+                    <h1>RevoU X HPM: Digital Dealer Training</h1>
+                    <div class="notion-callout">
+                        <span>🚨</span> <strong>Important Links</strong>
+                    </div>
+                    <a href="#" target="_blank" class="notion-link-card"><span>📝</span> Attendance Form</a>
+                    <a href="https://www.youtube.com/playlist?list=PL_-gdWaRz2-g3LOBTuQCzEplyu52f7b6A" target="_blank" class="notion-link-card"><span>▶️</span> Full YouTube Playlist</a>
+                </div>
+
+                <div class="welcome-section">
+                    <h2>👋 Welcome</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Selamat datang di Program Digital Dealer Training. Halaman tunggal ini memuat seluruh dokumentasi rekaman sesi untuk mempermudah evaluasi belajar.</p>
+                    <details>
+                        <summary>Tujuan Program</summary>
+                        <div>
+                            <ul>
+                                <li>Workflow strategi dan konten yang lebih terstruktur.</li>
+                                <li>Optimasi tracking data (Meta Ads, GA4, GTM).</li>
+                                <li>Peningkatan manajemen konversi lead tim sales.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <h2 class="section-title">Class Session</h2>
+            <div class="session-grid" id="session-grid-container">
+                <p class="status-msg">Memuat data modul training...</p>
             </div>
         </main>
 
         <main id="view-detail" class="view-section">
-            <button class="back-btn" onclick="showCatalogView()">
-                ← Kembali ke Katalog
-            </button>
-            
-            <div class="detail-layout">
-                <div class="detail-gallery">
-                    <img id="detail-main-img" src="" alt="Product Image">
+            <button class="back-btn" onclick="goBackToMain()">← Kembali ke Dashboard</button>
+
+            <div class="detail-header">
+                <h1 class="detail-title" id="detail-title">Judul Sesi</h1>
+                <table class="meta-table">
+                    <tr><td>📁 Category</td><td><span class="badge">Class Session</span></td></tr>
+                    <tr><td>📅 Date</td><td id="detail-date">-</td></tr>
+                </table>
+            </div>
+
+            <div class="content-section">
+                <h3>What you'll learn?</h3>
+                <div class="rich-box" id="detail-description"></div>
+            </div>
+
+            <div class="content-section">
+                <h3>Speaker Profile</h3>
+                <div class="speaker-profile">
+                    <img src="" alt="Speaker" id="detail-speaker-img" class="speaker-img">
+                    <div class="speaker-info">
+                        <h4 style="font-size: 1.1rem; margin-bottom: 4px;" id="detail-speaker-name">-</h4>
+                        <p id="detail-speaker-desc" style="color: var(--text-muted); font-size: 0.9rem;"></p>
+                    </div>
                 </div>
-                
-                <div class="detail-info">
-                    <h2 id="detail-name">Nama Mobil</h2>
-                    
-                    <div style="display: flex; gap: 8px; margin-bottom: 20px;">
-                        <span class="spec-badge" id="detail-badge-engine">Mesin</span>
-                        <span class="spec-badge" id="detail-badge-seats">Kursi</span>
-                    </div>
+            </div>
 
-                    <div class="price-box">
-                        <div>
-                            <span>Harga OTR Mulai:</span>
-                            <span class="main-p" id="detail-price">Rp -</span>
-                        </div>
-                        <div>
-                            <span>Simulasi DP:</span>
-                            <span style="font-weight: 600;" id="detail-dp">Rp -</span>
-                        </div>
-                        <div>
-                            <span>Angsuran:</span>
-                            <span style="font-weight: 600;" id="detail-angsuran">Rp -</span>
-                        </div>
-                    </div>
-
-                    <div class="variant-box">
-                        <h4>Pilihan Varian & OTR:</h4>
-                        <ul class="variant-list" id="detail-variants">
-                            </ul>
-                    </div>
-
-                    <div class="rich-description" id="detail-description">
-                        </div>
+            <div class="content-section">
+                <h3>Sesi Rekaman Video</h3>
+                <div class="video-container">
+                    <iframe id="detail-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </main>
+
     </div>
 
     <script>
-        // Database penampung data dari fetch
-        let productsData = {};
+        let trainingData = {};
 
-        // Format Angka ke Rupiah OTR otomatis
-        function formatRupiah(num) {
-            if(!num) return "Hubungi Dealer";
-            return "Rp " + new Intl.NumberFormat('id-ID').format(num);
-        }
-
-        // AJAX / Fetch Data dari file eksternal products.json
-        async function fetchProductsJSON() {
-            const container = document.getElementById('catalog-container');
+        // Ambil data secara dinamis dari file JSON eksternal
+        async function loadTrainingData() {
+            const gridContainer = document.getElementById('session-grid-container');
             try {
-                // Mengambil file json lokal yang berada di folder yang sama
-                const response = await fetch('/json/products.json');
-                if (!response.ok) throw new Error('File JSON tidak ditemukan');
-                
-                productsData = await response.json();
-                renderCatalog();
+                const response = await fetch('training.json');
+                if (!response.ok) throw new Error('Gagal memuat database JSON');
+                trainingData = await response.json();
+                renderSessionCards();
             } catch (error) {
-                console.error("Error loading JSON:", error);
-                container.innerHTML = `<p class="status-msg" style="color: var(--primary-red);">Gagal memuat katalog. Pastikan file 'products.json' sudah diunggah di repository yang sama.</p>`;
+                console.error(error);
+                gridContainer.innerHTML = `<p class="status-msg" style="color: var(--red-brand)">Gagal mengambil data dari file 'training.json'. Pastikan file tersebut sudah di-upload.</p>`;
             }
         }
 
-        // RENDER KATALOG MOBIL DI HALAMAN DEPAN
-        const catalogContainer = document.getElementById('catalog-container');
+        // Render komponen kartu dari objek JSON
+        function renderSessionCards() {
+            const gridContainer = document.getElementById('session-grid-container');
+            gridContainer.innerHTML = '';
 
-        function renderCatalog() {
-            catalogContainer.innerHTML = '';
-            
-            if (Object.keys(productsData).length === 0) {
-                catalogContainer.innerHTML = '<p class="status-msg">Tidak ada data produk saat ini.</p>';
-                return;
-            }
-
-            for (let key in productsData) {
-                const car = productsData[key];
-                const thumbImg = car.images && car.images.length > 0 ? car.images[0].thumb : 'https://placehold.co/400x250';
-                
+            for (let key in trainingData) {
+                const session = trainingData[key];
                 const card = document.createElement('div');
-                card.className = 'product-card';
-                card.onclick = () => showDetailView(key);
-
+                card.className = 'session-card';
+                card.onclick = () => openSessionDetail(key);
+                
                 card.innerHTML = `
-                    <div class="card-img-wrapper">
-                        <img src="${thumbImg}" alt="${car.name}" loading="lazy">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">${car.name}</div>
-                        <div class="card-price">${formatRupiah(car.price)}</div>
-                        <div class="card-specs">
-                            <span class="spec-badge">⚙️ ${car.seats}</span>
-                            <span class="spec-badge">📦 ${car.engine.split('+')[0].trim()}</span>
+                    <div class="card-banner">Digital Training 2026</div>
+                    <div class="card-content">
+                        <div class="card-title">📄 ${session.title}</div>
+                        <div class="card-meta">
+                            <span class="badge">Class Session</span>
+                            <div class="card-date">${session.date}</div>
                         </div>
                     </div>
                 `;
-                catalogContainer.appendChild(card);
+                gridContainer.appendChild(card);
             }
         }
 
-        // LOGIKA DETIL SPA
-        const viewCatalog = document.getElementById('view-catalog');
+        // Tampilkan Detail Sesi (SPA Switch)
+        const viewMain = document.getElementById('view-main');
         const viewDetail = document.getElementById('view-detail');
 
-        function showDetailView(key) {
-            const car = productsData[key];
-            if(!car) return;
+        function openSessionDetail(key) {
+            const session = trainingData[key];
+            if(!session) return;
 
-            document.getElementById('detail-name').innerText = car.name;
-            document.getElementById('detail-price').innerText = formatRupiah(car.price);
-            document.getElementById('detail-dp').innerText = car.dp;
-            document.getElementById('detail-angsuran').innerText = car.angsuran;
-            document.getElementById('detail-badge-engine').innerText = "Mesin: " + car.engine;
-            document.getElementById('detail-badge-seats').innerText = "Kapasitas: " + car.seats;
-            document.getElementById('detail-description').innerHTML = car.description;
+            document.getElementById('detail-title').innerText = session.title;
+            document.getElementById('detail-date').innerText = session.date;
+            document.getElementById('detail-speaker-name').innerText = session.speakerName;
+            document.getElementById('detail-speaker-desc').innerText = session.speakerDesc;
+            document.getElementById('detail-speaker-img').src = session.speakerImg;
+            document.getElementById('detail-description').innerHTML = session.description;
+            
+            // Set Embed Player YouTube
+            document.getElementById('detail-video').src = `https://www.youtube.com/embed/${session.youtubeId}?rel=0`;
 
-            const fullImg = car.images && car.images.length > 0 ? car.images[0].full : 'https://placehold.co/600x400';
-            document.getElementById('detail-main-img').src = fullImg;
-
-            const variantContainer = document.getElementById('detail-variants');
-            variantContainer.innerHTML = '';
-            car.variants.forEach(variant => {
-                const li = document.createElement('li');
-                li.innerText = variant;
-                variantContainer.appendChild(li);
-            });
-
-            viewCatalog.classList.remove('active');
+            viewMain.classList.remove('active');
             viewDetail.classList.add('active');
             window.scrollTo(0, 0);
         }
 
-        function showCatalogView() {
+        function goBackToMain() {
+            // Matikan video streaming saat kembali
+            document.getElementById('detail-video').src = "";
             viewDetail.classList.remove('active');
-            viewCatalog.classList.add('active');
+            viewMain.classList.add('active');
             window.scrollTo(0, 0);
         }
 
-        // LOGIKA TOGGLE NIGHT / LIGHT MODE
+        // Night Mode Engine toggle
         const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const themeText = document.getElementById('theme-text');
         const bodyEl = document.body;
 
-        if (localStorage.getItem('honda-theme') === 'dark') {
+        if (localStorage.getItem('training-theme') === 'dark') {
             bodyEl.setAttribute('data-theme', 'dark');
-            themeIcon.innerText = '☀️';
-            themeText.innerText = 'Normal Mode';
+            themeToggleBtn.innerText = '☀️';
         }
 
         themeToggleBtn.addEventListener('click', () => {
             if (bodyEl.getAttribute('data-theme') === 'dark') {
                 bodyEl.removeAttribute('data-theme');
-                localStorage.setItem('honda-theme', 'light');
-                themeIcon.innerText = '🌙';
-                themeText.innerText = 'Night Mode';
+                localStorage.setItem('training-theme', 'light');
+                themeToggleBtn.innerText = '🌙';
             } else {
                 bodyEl.setAttribute('data-theme', 'dark');
-                localStorage.setItem('honda-theme', 'dark');
-                themeIcon.innerText = '☀️';
-                themeText.innerText = 'Normal Mode';
+                localStorage.setItem('training-theme', 'dark');
+                themeToggleBtn.innerText = '☀️';
             }
         });
 
-        // Jalankan Fetch Data saat DOM siap
-        document.addEventListener("DOMContentLoaded", () => {
-            fetchProductsJSON();
-        });
+        document.addEventListener("DOMContentLoaded", loadTrainingData);
     </script>
 </body>
 </html>
