@@ -396,7 +396,7 @@
         async function loadTrainingData() {
             const gridContainer = document.getElementById('session-grid-container');
             try {
-                const response = await fetch('training.json');
+                const response = await fetch('json/training.json');
                 if (!response.ok) throw new Error('Gagal memuat database JSON');
                 trainingData = await response.json();
                 renderSessionCards();
