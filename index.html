@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevoU X HPM - Digital Dealer Training</title>
+    <style>
+        /* Desain ala Notion: Bersih dan Minimalis */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #37352f;
+            --text-muted: #787774;
+            --border-color: #e9e9e7;
+            --hover-bg: #f1f1ef;
+            --btn-color: #e03c31; /* Aksen merah ala Honda/YouTube */
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .playlist-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--hover-bg);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            transition: background 0.2s ease;
+        }
+
+        .playlist-badge:hover {
+            background-color: #e3e2e0;
+        }
+
+        .session-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .session-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .session-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .session-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+        }
+
+        .session-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .video-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--btn-color);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .video-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Responsif untuk Mobile */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 30px 15px;
+            }
+            .session-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RevoU X HPM: Digital Dealer Training</h1>
+            <p class="description">Dokumentasi, materi training, dan rekaman sesi untuk meningkatkan performa digital dealer.</p>
+            <!-- Link ke Full Playlist -->
+            <a href="https://www.youtube.com/playlist?list=PL_-gdWaRz2-g3LOBTuQCzEplyu52f7b6A" target="_blank" class="playlist-badge">
+                ▶️ Tonton Full Playlist di YouTube
+            </a>
+        </header>
+
+        <div class="session-list">
+            
+            <!-- SESI 1 -->
+            <div class="session-card">
+                <h2 class="session-title">Sesi 1: Introduction to Digital Strategy</h2>
+                <p class="session-desc">Fondasi strategi digital untuk memaksimalkan akuisisi lead dan konversi pada dealer.</p>
+                <!-- Ganti tanda # di bawah dengan link video YouTube spesifik untuk Sesi 1 -->
+                <a href="#" class="video-btn" target="_blank">Tonton Sesi 1</a>
+            </div>
+
+            <!-- SESI 2 -->
+            <div class="session-card">
+                <h2 class="session-title">Sesi 2: Meta Ads & Tracking Setup</h2>
+                <p class="session-desc">Implementasi Meta Ads, GTM, GA4, serta manajemen UTM parameters agar tracking data lebih presisi.</p>
+                <!-- Ganti tanda # di bawah dengan link video YouTube spesifik untuk Sesi 2 -->
+                <a href="#" class="video-btn" target="_blank">Tonton Sesi 2</a>
+            </div>
+
+            <!-- SESI 3 -->
+            <div class="session-card">
+                <h2 class="session-title">Sesi 3: Lead Management & Reporting</h2>
+                <p class="session-desc">Cara mengelola distribusi lead ke tim sales dan menyusun laporan performa yang komprehensif.</p>
+                <!-- Ganti tanda # di bawah dengan link video YouTube spesifik untuk Sesi 3 -->
+                <a href="#" class="video-btn" target="_blank">Tonton Sesi 3</a>
+            </div>
+
+            <!-- Kamu bisa copy-paste blok session-card di atas untuk menambah sesi baru -->
+
+        </div>
+    </div>
+</body>
+</html>
