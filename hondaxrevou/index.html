@@ -6,7 +6,7 @@
     <title>Digital Dealer Training 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === TEMA LIGHT MODE (Default) === */
+        /* === TEMA LIGHT MODE (Default Awal) === */
         :root {
             --bg-body: #ffffff;
             --bg-card: #ffffff;
@@ -48,51 +48,53 @@
         .top-banner { background: var(--red-gradient); height: 100px; display: flex; align-items: center; padding: 0 5%; }
         .banner-title { color: white; font-size: 1.8rem; font-weight: 700; }
 
+        /* LEBAR CONTAINER OPTIMAL */
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; width: 95%; }
 
-        /* SPA VIEW */
+        /* SPA VIEW EFFECT */
         .view-section { display: none; animation: fadeIn 0.3s ease-out; }
         .view-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* === DASHBOARD GRID === */
+        /* === DASHBOARD LAYOUT === */
         .dashboard-grid { display: grid; grid-template-columns: 350px 1fr; gap: 50px; margin-bottom: 50px; }
         @media (max-width: 800px) { .dashboard-grid { grid-template-columns: 1fr; } }
 
-        /* SIDEBAR (Important Links) */
+        /* SIDEBAR COMPONENTS */
         .sidebar-title { font-size: 1.6rem; margin-bottom: 25px; line-height: 1.3; }
         .notion-callout { background-color: var(--bg-callout); border: 1px solid var(--border-color); border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-weight: 600; display: flex; gap: 10px; align-items: center;}
         
-        /* DINAMIS IMPORTANT LINKS BLOCKS */
+        /* SIDEBAR INDEPENDENT BLOCKS */
         .block-heading { font-size: 1.05rem; font-weight: 600; margin-top: 20px; margin-bottom: 8px; }
-        .block-heading-sub { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+        .block-heading-sub { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
         .block-list { padding-left: 20px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px;}
         .block-list li { margin-bottom: 6px; }
 
-        /* Bookmark Card ala Notion */
+        /* BOOKMARK CARD DESIGN */
         .notion-bookmark { 
             display: flex; 
             align-items: center; 
             background-color: var(--bg-card); 
             border: 1px solid var(--border-color); 
-            border-radius: 6px; 
-            padding: 12px 16px; 
+            border-radius: 8px; 
+            padding: 14px 18px; 
             margin-bottom: 15px; 
             cursor: pointer; 
             transition: all 0.2s ease; 
+            box-shadow: var(--shadow);
         }
-        .notion-bookmark:hover { background-color: var(--btn-hover); }
+        .notion-bookmark:hover { background-color: var(--btn-hover); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
         .bm-content { flex-grow: 1; overflow: hidden; }
-        .bm-title { font-weight: 500; font-size: 0.95rem; margin-bottom: 4px; }
-        .bm-url { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .bm-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; color: var(--text-main); }
+        .bm-url { font-size: 0.85rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* WELCOME SECTION */
+        /* WELCOME CONTENT */
         .welcome-title { font-size: 1.6rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .welcome-text { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
         .hero-img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 25px; object-fit: cover; }
 
-        /* ACCORDIONS / TOGGLES */
-        details { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 12px; }
+        /* TOGGLE ACCORDIONS */
+        details { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 12px; box-shadow: var(--shadow); }
         summary { padding: 14px 18px; font-weight: 600; cursor: pointer; background-color: var(--bg-callout); font-size: 1.05rem; }
         details div { padding: 18px; border-top: 1px solid var(--border-color); font-size: 0.95rem; }
         details ul { padding-left: 20px; color: var(--text-muted); }
@@ -101,10 +103,10 @@
         .ground-rules-list li { display: flex; gap: 12px; margin-bottom: 12px; color: var(--text-muted); align-items: flex-start;}
         .ground-rules-list li::before { content: '☑'; color: var(--text-main); font-size: 1.3rem; line-height: 1.2;}
 
-        .contact-box { background: var(--bg-callout); padding: 18px; border-radius: 6px; margin-top: 20px; border: 1px solid var(--border-color); }
+        .contact-box { background: var(--bg-callout); padding: 18px; border-radius: 8px; margin-top: 20px; border: 1px solid var(--border-color); }
 
-        /* === SESSIONS GRID === */
-        .section-title { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 25px; }
+        /* === TRAINING CARDS GRID === */
+        .section-title { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 25px; font-weight: 700;}
         .session-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
         .session-card { background-color: var(--red-brand); border-radius: 10px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: 0.2s; box-shadow: var(--shadow);}
         .session-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover);}
@@ -114,7 +116,7 @@
         .card-badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.75rem; font-weight: 600; padding: 5px 10px; border-radius: 4px; margin-bottom: 8px; }
         .card-date { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* === DETAIL VIEW === */
+        /* === SINGLE PAGE DETAIL VIEW === */
         .back-btn { display: inline-block; padding: 10px 18px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 30px; cursor: pointer; font-weight: 600; box-shadow: var(--shadow); transition: 0.2s;}
         .back-btn:hover { background-color: var(--btn-hover); transform: translateX(-3px);}
         .detail-title { font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2;}
@@ -135,13 +137,13 @@
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);}
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Detail Links styling (Materials) */
+        /* MATERIAL DETAILED LINKS */
         .material-link { display: flex; align-items: center; gap: 16px; background: var(--bg-card); border: 1px solid var(--border-color); padding: 16px; border-radius: 8px; margin-bottom: 12px; transition: 0.2s; box-shadow: var(--shadow);}
-        .material-link:hover { background: var(--btn-hover); transform: translateY(-2px);}
+        .material-link:hover { background: var(--btn-hover); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
         .material-icon { font-size: 1.5rem; }
 
-        /* Theme Toggle */
-        .theme-toggle { position: fixed; bottom: 30px; right: 30px; background: var(--bg-card); border: 1px solid var(--border-color); width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; color: var(--text-main); box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: 0.2s;}
+        /* Theme Toggle floating button */
+        .theme-toggle { position: fixed; bottom: 30px; right: 30px; background: var(--bg-card); border: 1px solid var(--border-color); width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; color: var(--text-main); box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: 0.2s; display: flex; align-items: center; justify-content: center;}
         .theme-toggle:hover { transform: scale(1.1); }
         
         .status-msg { text-align: center; padding: 40px; color: var(--text-muted); font-size: 1.1rem;}
@@ -271,7 +273,7 @@
         }
 
         function renderGlobalData() {
-            const g = appData.global || {}; // Safety check global
+            const g = appData.global || {}; 
             
             document.getElementById('global-page-title').innerText = g.pageTitle || "Judul Tidak Ditemukan";
             document.getElementById('global-welcome-text').innerText = g.welcomeText || "";
@@ -282,7 +284,6 @@
                 imgEl.style.display = "block";
             }
 
-            // SAFETY CHECK: Pakai tanda tanya (?.) agar tidak error jika array tidak ada
             const objUl = document.getElementById('global-objectives');
             objUl.innerHTML = '';
             g.objectives?.forEach(item => {
@@ -305,7 +306,6 @@
             const linksContainer = document.getElementById('important-links-container');
             linksContainer.innerHTML = '';
             
-            // SAFETY CHECK
             g.importantBlocks?.forEach(block => {
                 if(block.type === 'heading') {
                     const h = document.createElement('div');
@@ -388,7 +388,6 @@
 
             const learnUl = document.getElementById('det-learnings');
             learnUl.innerHTML = '';
-            // SAFETY CHECK
             s.learnings?.forEach(item => {
                 const li = document.createElement('li');
                 li.innerText = item;
@@ -405,7 +404,7 @@
                 document.getElementById('det-video').src = `https://www.youtube.com/embed/${s.materials.youtubeId}?rel=0`;
             }
 
-            // Render During Session Dinamis dengan SAFETY CHECK
+            // Render During Session Dinamis
             const duringContainer = document.getElementById('container-during');
             const duringSection = document.getElementById('section-during');
             duringContainer.innerHTML = '';
@@ -416,7 +415,7 @@
                 duringSection.style.display = "none";
             }
 
-            // Render After Session Dinamis dengan SAFETY CHECK
+            // Render After Session Dinamis
             const afterContainer = document.getElementById('container-after');
             const afterSection = document.getElementById('section-after');
             afterContainer.innerHTML = '';
