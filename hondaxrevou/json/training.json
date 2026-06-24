@@ -1,35 +1,94 @@
 {
-  "sesi-1": {
-    "title": "Sesi #1 - Evaluasi Channel: Seberapa Efektif yang Sudah Berjalan?",
-    "date": "June 17, 2026",
-    "youtubeId": "y1RzB_7qYvE",
-    "speakerName": "Adinda Kindyochendra",
-    "speakerImg": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
-    "speakerDesc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing, khususnya dalam ranah Social Media Content. Sehari-hari aktif mengajar pemasaran dan komunikasi.",
-    "description": "<ul><li>Framework evaluasi channel: platform mana yang menghasilkan leads nyata vs sekadar vanity metrics</li><li>Funnel performance review: di tahap mana calon pembeli berhenti sebelum menghubungi dealer?</li><li>Optimasi peran platform: Instagram sebagai engine utama awareness dan engagement lokal</li></ul>",
-    "deckLink": "#",
-    "formLink": "#"
+  "global": {
+    "pageTitle": "RevoU X HPM: Digital Dealer Training | Perform",
+    "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan RevoU.",
+    "learningJourneyImg": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC5vQQUxf-6eA2Ka7uaLWAo85m32iwWpUX06oPr4SQoa2xNyejEYbE-EBlMHwAysRmJ0bGi5XwUuzpJSK96RZrFjy_bXdPvO6jHhYwFamr0nRNjpSlqyM8kchTv2pJRqBHqwLgDTg5pSO2ULjwASQ4dK0GX5o5YOzqStS4g_HqqX_5N3Vp3TPcZxYl3t7B/s1600/crv.webp", 
+    "objectives": [
+      "Workflow konten Honda yang lebih terstruktur",
+      "Konten selaras dengan brand identity Honda",
+      "Konsistensi publikasi dan engagement meningkat",
+      "Rencana aksi dan KPI yang terukur"
+    ],
+    "groundRules": [
+      "Datang tepat waktu 🤫",
+      "Berpartisipasi dan ajukan pertanyaan selama pembelajaran 🙋",
+      "Biasakan dirimu dengan semua alat kelas dan hubungi Class Manager di grup WhatsApp jika menghadapi kesulitan teknis 👩‍💻",
+      "Berikan masukan agar kami dapat melakukan perbaikan 💯"
+    ],
+    "contactInfo": "Jika masih memiliki pertanyaan, dapat menghubungi Tim RevoU melalui Grup WhatsApp.",
+    "importantLinks": [
+      {
+        "id": "link-1",
+        "emoji": "1️⃣",
+        "title": "Attendance & Feedback Form",
+        "cardTitle": "Feedback-CT",
+        "url": "https://feedback-ct.paperform.co/",
+        "description": ""
+      },
+      {
+        "id": "link-2",
+        "emoji": "2️⃣",
+        "title": "Pre-test Assessment (Foundation)",
+        "cardTitle": "Pre-Test: Perform",
+        "url": "https://forms.gle/oJLN...",
+        "description": "<ul><li>Mohon lengkapi pre-test untuk membantu kami memahami tingkat kemampuanmu saat ini.</li><li><b>Deadline: Rabu, 17 Juni 2026 pukul 09.00 WIB</b></li></ul>"
+      }
+    ]
   },
-  "sesi-2": {
-    "title": "Sesi #2 - Optimasi Journey: Selaraskan Konten Dengan Perilaku Pembeli",
-    "date": "June 18, 2026",
-    "youtubeId": "dQw4w9WgXcQ",
-    "speakerName": "Budi Santoso",
-    "speakerImg": "https://placehold.co/300x300/3399ff/fff?text=Budi",
-    "speakerDesc": "Ahli dalam menganalisis Customer Journey Mapping untuk industri otomotif dengan pengalaman lebih dari 10 tahun.",
-    "description": "<ul><li>Memahami tahapan pembeli dari Awareness hingga Decision</li><li>Menyesuaikan format konten (Video, Image, Carousel) sesuai tahap journey</li><li>Strategi Call-to-Action (CTA) yang efektif</li></ul>",
-    "deckLink": "#",
-    "formLink": "#"
-  },
-  "sesi-3": {
-    "title": "Sesi #3 - Dari Manual Menuju Scalable Content",
-    "date": "June 19, 2026",
-    "youtubeId": "dQw4w9WgXcQ",
-    "speakerName": "Citra Kirana",
-    "speakerImg": "https://placehold.co/300x300/ff6699/fff?text=Citra",
-    "speakerDesc": "Content Creator Specialist yang berfokus pada efisiensi produksi konten skala besar menggunakan tools AI.",
-    "description": "<ul><li>Pengenalan tools AI untuk copywriting dan ideation</li><li>Membuat content calendar yang realistis</li><li>Template desain untuk mempercepat workflow</li></ul>",
-    "deckLink": "#",
-    "formLink": "#"
+  "sessions": {
+    "sesi-1": {
+      "title": "Sesi #1 - Evaluasi Channel: Seberapa Efektif yang Sudah Berjalan?",
+      "category": "Class Session",
+      "date": "June 17, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Framework evaluasi channel: platform mana yang menghasilkan leads nyata vs sekadar vanity metrics",
+        "Funnel performance review: di tahap mana calon pembeli Honda berhenti sebelum menghubungi dealer?",
+        "Optimasi peran platform: Instagram sebagai engine utama awareness dan engagement lokal",
+        "Metodologi gap analysis: benchmark performa instagram dealer sendiri vs rata-rata industri otomotif",
+        "Identifikasi bottleneck utama: apakah masalah di kualitas konten, konsistensi posting, atau penanganan DM dan komentar?"
+      ],
+      "materials": {
+        "youtubeId": "y1RzB_7qYvE",
+        "deckTitle": "Sesi 1 HPM (Perform)",
+        "deckDesc": "Slide presentasi materi evaluasi channel",
+        "deckUrl": "#link-deck-google-slide",
+        "exerciseTitle": "Form Latihan Sesi 1",
+        "exerciseUrl": "#link-google-form-tugas",
+        "feedbackTitle": "Feedback-CT",
+        "feedbackUrl": "#link-paperform-feedback"
+      }
+    },
+    "sesi-2": {
+      "title": "Sesi #2 - Optimasi Journey: Selaraskan Konten Dengan Perilaku Pembeli",
+      "category": "Class Session",
+      "date": "June 18, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Budi Santoso",
+        "image": "https://placehold.co/300x300/3399ff/fff?text=Budi",
+        "desc": "Ahli dalam menganalisis Customer Journey Mapping untuk industri otomotif dengan pengalaman lebih dari 10 tahun."
+      },
+      "learnings": [
+        "Memahami tahapan pembeli dari Awareness hingga Decision",
+        "Menyesuaikan format konten sesuai tahap journey",
+        "Strategi Call-to-Action (CTA) yang efektif"
+      ],
+      "materials": {
+        "youtubeId": "dQw4w9WgXcQ",
+        "deckTitle": "Sesi 2 HPM (Journey)",
+        "deckDesc": "Slide materi Customer Journey",
+        "deckUrl": "#",
+        "exerciseTitle": "Form Latihan Sesi 2",
+        "exerciseUrl": "#",
+        "feedbackTitle": "Feedback-CT",
+        "feedbackUrl": "#"
+      }
+    }
   }
 }
