@@ -250,7 +250,7 @@
         // 1. FUNGSI FETCH JSON
         async function loadData() {
             try {
-                const res = await fetch('training.json');
+                const res = await fetch('json/training.json');
                 if(!res.ok) throw new Error("Gagal mengambil training.json");
                 appData = await res.json();
                 
