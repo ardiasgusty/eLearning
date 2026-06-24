@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Dealer Training 2026</title>
+    <!-- Font Inter ala Notion -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* === TEMA DARK MODE NOTION (Default) === */
+        /* === TEMA LIGHT MODE (Default) === */
         :root {
+            --bg-body: #ffffff;
+            --bg-card: #f9f9f8;  /* Sedikit abu-abu agar terpisah dari background putih */
+            --bg-callout: #f1f1ef;
+            --text-main: #37352f;
+            --text-muted: #787774;
+            --border-color: #e9e9e7;
+            --red-brand: #cc0000;
+            --red-gradient: linear-gradient(135deg, #e60000 0%, #a30000 100%);
+            --badge-bg: #ffebe5;
+            --badge-text: #cc0000;
+            --shadow: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+            --btn-hover: #efefed;
+        }
+
+        /* === TEMA DARK MODE === */
+        [data-theme="dark"] {
             --bg-body: #191919;
             --bg-card: #252525;
             --bg-callout: #2c2c2c;
@@ -15,110 +33,134 @@
             --text-muted: #a0a0a0;
             --border-color: #333333;
             --red-brand: #ff4d4d;
-            --red-gradient: linear-gradient(135deg, #e60000 0%, #a30000 100%);
+            --red-gradient: linear-gradient(135deg, #ff4d4d 0%, #cc0000 100%);
             --badge-bg: #3a1a1a;
-            --badge-text: #e6b800;
+            --badge-text: #ff6b6b;
             --shadow: 0 4px 6px rgba(0,0,0,0.2);
+            --shadow-hover: 0 10px 20px rgba(0,0,0,0.4);
             --btn-hover: #333333;
-        }
-
-        /* Jika kamu ingin Normal Mode, hapus data-theme="dark" di JS nanti */
-        [data-theme="light"] {
-            --bg-body: #ffffff;
-            --bg-card: #f7f7f5;
-            --bg-callout: #fbfbfa;
-            --text-main: #37352f;
-            --text-muted: #787774;
-            --border-color: #e9e9e7;
-            --badge-bg: #ffebe5;
-            --badge-text: #cc0000;
-            --btn-hover: #f1f1ef;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
-        a { color: inherit; text-decoration: none; }
+        a { color: inherit; text-decoration: none; display: block; } /* display block agar a memenuhi card */
 
         /* HEADER BANNER */
         .top-banner { background: var(--red-gradient); height: 100px; display: flex; align-items: center; padding: 0 5%; }
         .banner-title { color: white; font-size: 1.8rem; font-weight: 700; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        /* CONTAINER DIPERLEBAR */
+        .container { 
+            max-width: 1200px; /* Diperlebar dari 1100px ke 1200px */
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            width: 95%; /* Pastikan mengisi layar dengan baik */
+        }
 
         /* SPA VIEW */
-        .view-section { display: none; animation: fadeIn 0.4s; }
+        .view-section { display: none; animation: fadeIn 0.3s ease-out; }
         .view-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* === DASHBOARD GRID === */
-        .dashboard-grid { display: grid; grid-template-columns: 320px 1fr; gap: 40px; margin-bottom: 50px; }
-        @media (max-width: 768px) { .dashboard-grid { grid-template-columns: 1fr; } }
+        .dashboard-grid { 
+            display: grid; 
+            grid-template-columns: 350px 1fr; /* Kolom kiri sedikit dilebarkan agar teks tidak terlalu sesak */
+            gap: 50px; /* Jarak antar kolom diperbesar */
+            margin-bottom: 50px; 
+        }
+        @media (max-width: 800px) { .dashboard-grid { grid-template-columns: 1fr; } }
 
         /* SIDEBAR (Important Links) */
         .sidebar-title { font-size: 1.6rem; margin-bottom: 25px; line-height: 1.3; }
-        .notion-callout { background-color: var(--bg-callout); border: 1px solid var(--border-color); border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-weight: 600; display: flex; gap: 10px; }
+        .notion-callout { background-color: var(--bg-callout); border: 1px solid var(--border-color); border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-weight: 600; display: flex; gap: 10px; align-items: center;}
         
-        .bookmark-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; padding: 12px 16px; margin-bottom: 15px; cursor: pointer; transition: 0.2s; }
-        .bookmark-card:hover { background-color: var(--btn-hover); }
-        .bookmark-card .emoji { margin-right: 8px; }
-        .bookmark-card .bm-title { font-weight: 600; margin-bottom: 5px; font-size: 0.95rem; }
-        .bookmark-card .bm-desc { font-size: 0.85rem; color: var(--text-muted); }
-        .bookmark-card .bm-desc ul { padding-left: 20px; margin-top: 8px; }
+        /* PERBAIKAN BOOKMARK CARD */
+        .bookmark-card { 
+            background-color: var(--bg-card); 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 16px; 
+            margin-bottom: 16px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            box-shadow: var(--shadow);
+        }
+        .bookmark-card:hover { 
+            background-color: var(--btn-hover); 
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .bm-header { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+        .bm-emoji { font-size: 1.2rem; line-height: 1.2; }
+        .bm-title { font-weight: 600; font-size: 1rem; line-height: 1.3;}
+        .bm-desc { font-size: 0.9rem; color: var(--text-muted); padding-left: 32px; /* Indentasi menyesuaikan lebar emoji */ }
+        .bm-desc ul { padding-left: 20px; margin-top: 8px; }
 
         /* WELCOME SECTION */
-        .welcome-title { font-size: 1.5rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .welcome-text { color: var(--text-muted); margin-bottom: 20px; }
-        .hero-img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 20px; }
+        .welcome-title { font-size: 1.6rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .welcome-text { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+        .hero-img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 25px; object-fit: cover; }
 
         /* ACCORDIONS / TOGGLES */
-        details { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 10px; }
-        summary { padding: 12px 16px; font-weight: 600; cursor: pointer; background-color: var(--bg-callout); }
-        details div { padding: 16px; border-top: 1px solid var(--border-color); font-size: 0.95rem; }
+        details { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 12px; }
+        summary { padding: 14px 18px; font-weight: 600; cursor: pointer; background-color: var(--bg-callout); font-size: 1.05rem; }
+        details div { padding: 18px; border-top: 1px solid var(--border-color); font-size: 0.95rem; }
         details ul { padding-left: 20px; color: var(--text-muted); }
         
         .ground-rules-list { list-style: none; padding-left: 0; }
-        .ground-rules-list li { display: flex; gap: 10px; margin-bottom: 10px; color: var(--text-muted); }
-        .ground-rules-list li::before { content: '☑'; color: var(--text-main); font-size: 1.2rem; }
+        .ground-rules-list li { display: flex; gap: 12px; margin-bottom: 12px; color: var(--text-muted); align-items: flex-start;}
+        .ground-rules-list li::before { content: '☑'; color: var(--text-main); font-size: 1.3rem; line-height: 1.2;}
 
-        .contact-box { background: var(--bg-callout); padding: 15px; border-radius: 6px; margin-top: 15px; }
+        .contact-box { background: var(--bg-callout); padding: 18px; border-radius: 6px; margin-top: 20px; border: 1px solid var(--border-color); }
 
         /* === SESSIONS GRID === */
         .section-title { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 25px; }
-        .session-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .session-card { background-color: var(--red-brand); border-radius: 8px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: 0.2s; }
-        .session-card:hover { transform: translateY(-4px); }
-        .card-header { height: 100px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; }
-        .card-body { background-color: var(--bg-card); padding: 20px; flex-grow: 1; border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; }
-        .card-body h4 { margin-bottom: 10px; font-size: 1rem; }
-        .card-badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; margin-bottom: 5px; }
-        .card-date { font-size: 0.8rem; color: var(--text-muted); }
+        .session-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .session-card { background-color: var(--red-brand); border-radius: 10px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: 0.2s; box-shadow: var(--shadow);}
+        .session-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover);}
+        .card-header { height: 110px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; }
+        .card-body { background-color: var(--bg-card); padding: 20px; flex-grow: 1; border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 10px 10px; }
+        .card-body h4 { margin-bottom: 12px; font-size: 1.05rem; line-height: 1.4;}
+        .card-badge { display: inline-block; background-color: var(--badge-bg); color: var(--badge-text); font-size: 0.75rem; font-weight: 600; padding: 5px 10px; border-radius: 4px; margin-bottom: 8px; }
+        .card-date { font-size: 0.85rem; color: var(--text-muted); }
 
         /* === DETAIL VIEW === */
-        .back-btn { display: inline-block; padding: 8px 16px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 30px; cursor: pointer; font-weight: 600; }
-        .detail-title { font-size: 2rem; margin-bottom: 20px; }
-        .meta-table { width: 100%; max-width: 400px; font-size: 0.9rem; margin-bottom: 40px; }
-        .meta-table td { padding: 5px 0; color: var(--text-muted); }
-        .meta-table td:first-child { width: 120px; display: flex; gap: 8px; }
+        .back-btn { display: inline-block; padding: 10px 18px; background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 30px; cursor: pointer; font-weight: 600; box-shadow: var(--shadow); transition: 0.2s;}
+        .back-btn:hover { background-color: var(--btn-hover); transform: translateX(-3px);}
+        .detail-title { font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2;}
+        .meta-table { width: 100%; max-width: 400px; font-size: 0.95rem; margin-bottom: 40px; }
+        .meta-table td { padding: 8px 0; color: var(--text-muted); }
+        .meta-table td:first-child { width: 130px; display: flex; gap: 8px; font-weight: 500;}
 
         .content-box { margin-bottom: 40px; }
-        .content-box h3 { font-size: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px; }
+        .content-box h3 { font-size: 1.3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 18px; }
         
-        .learn-box { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 8px; }
+        .learn-box { background: var(--bg-card); border: 1px solid var(--border-color); padding: 24px; border-radius: 8px; }
         .learn-box ul { padding-left: 20px; color: var(--text-muted); }
-        .learn-box li { margin-bottom: 8px; }
+        .learn-box li { margin-bottom: 10px; }
 
-        .speaker-box { display: flex; gap: 20px; align-items: center; }
-        .speaker-box img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color); }
+        .speaker-box { display: flex; gap: 24px; align-items: center; }
+        .speaker-box img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--border-color); }
 
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 8px; overflow: hidden; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);}
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* Detail Links styling (Materials) */
-        .material-link { display: flex; align-items: center; gap: 12px; background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; margin-bottom: 10px; }
-        .material-link:hover { background: var(--btn-hover); }
+        .material-link { display: flex; align-items: center; gap: 16px; background: var(--bg-card); border: 1px solid var(--border-color); padding: 16px; border-radius: 8px; margin-bottom: 12px; transition: 0.2s; box-shadow: var(--shadow);}
+        .material-link:hover { background: var(--btn-hover); transform: translateY(-2px);}
+        .material-icon { font-size: 1.5rem; }
 
         /* Theme Toggle */
-        .theme-toggle { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); border: 1px solid var(--border-color); width: 45px; height: 45px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; color: var(--text-main); }
+        .theme-toggle { position: fixed; bottom: 30px; right: 30px; background: var(--bg-card); border: 1px solid var(--border-color); width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; color: var(--text-main); box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: 0.2s;}
+        .theme-toggle:hover { transform: scale(1.1); }
+        
+        .status-msg { text-align: center; padding: 40px; color: var(--text-muted); font-size: 1.1rem;}
+
+        @media (max-width: 600px) {
+            .speaker-box { flex-direction: column; align-items: center; text-align: center; }
+            .detail-title { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -127,23 +169,30 @@
         <div class="banner-title">Digital Dealer Training 2026</div>
     </div>
 
-    <button id="theme-btn" class="theme-toggle">☀️</button>
+    <!-- Tombol mulai dengan icon bulan karena defaultnya Light Mode -->
+    <button id="theme-btn" class="theme-toggle" title="Toggle Dark/Light Mode">🌙</button>
 
     <div class="container">
         
+        <!-- ============================================== -->
+        <!-- VIEW 1: DASHBOARD (Semua Diisi Dinamis)        -->
+        <!-- ============================================== -->
         <main id="view-dashboard" class="view-section active">
             <div class="dashboard-grid">
                 
+                <!-- KOLOM KIRI: Important Links -->
                 <div class="sidebar">
-                    <h1 class="sidebar-title" id="global-page-title">Loading...</h1>
+                    <h1 class="sidebar-title" id="global-page-title">Memuat data...</h1>
                     
                     <div class="notion-callout">
                         <span>🚨</span> Important Links
                     </div>
                     
+                    <!-- Container Link Dinamis -->
                     <div id="important-links-container"></div>
                 </div>
 
+                <!-- KOLOM KANAN: Welcome & Accordions -->
                 <div class="main-content">
                     <h2 class="welcome-title">👋 Welcome</h2>
                     <p class="welcome-text" id="global-welcome-text"></p>
@@ -163,8 +212,8 @@
                             <p style="margin-bottom: 15px; color: var(--text-muted);">Berikut adalah daftar hal-hal yang perlu kamu perhatikan:</p>
                             <ul class="ground-rules-list" id="global-ground-rules"></ul>
                             <div class="contact-box">
-                                <strong>👋 Masih Punya Pertanyaan?</strong>
-                                <p id="global-contact-info" style="margin-top: 5px; font-size: 0.9rem; color: var(--text-muted);"></p>
+                                <strong style="display: block; margin-bottom: 8px;">👋 Masih Punya Pertanyaan?</strong>
+                                <p id="global-contact-info" style="font-size: 0.95rem; color: var(--text-muted);"></p>
                             </div>
                         </div>
                     </details>
@@ -173,21 +222,26 @@
 
             <h2 class="section-title">Class Session</h2>
             <div class="session-grid" id="session-grid-container">
-                <p>Memuat sesi training...</p>
+                <p class="status-msg">Mengambil data sesi...</p>
             </div>
         </main>
 
 
+        <!-- ============================================== -->
+        <!-- VIEW 2: SESSION DETAIL (Semua Diisi Dinamis)   -->
+        <!-- ============================================== -->
         <main id="view-detail" class="view-section">
-            <div class="back-btn" onclick="goBack()">← Kembali</div>
+            <div class="back-btn" onclick="goBack()">← Kembali ke Dashboard</div>
 
+            <!-- Header Detail -->
             <h1 class="detail-title" id="det-title"></h1>
             <table class="meta-table">
                 <tr><td>📁 Category</td><td><span class="card-badge" id="det-category"></span></td></tr>
                 <tr><td>📅 Date</td><td id="det-date"></td></tr>
-                <tr><td>👥 Participant</td><td><span class="card-badge" id="det-participant"></span></td></tr>
+                <tr><td>👥 Participant</td><td><span class="card-badge" style="background: #e6b800; color: white;" id="det-participant"></span></td></tr>
             </table>
 
+            <!-- What You'll Learn -->
             <div class="content-box">
                 <h3>What you'll learn?</h3>
                 <div class="learn-box">
@@ -195,48 +249,51 @@
                 </div>
             </div>
 
+            <!-- Speaker Profile -->
             <div class="content-box">
                 <h3>Speaker Profile</h3>
                 <div class="speaker-box">
                     <img id="det-speaker-img" src="" alt="Speaker">
                     <div>
-                        <h4 style="font-size: 1.1rem;" id="det-speaker-name"></h4>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;" id="det-speaker-desc"></p>
+                        <h4 style="font-size: 1.2rem; margin-bottom: 5px;" id="det-speaker-name"></h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;" id="det-speaker-desc"></p>
                     </div>
                 </div>
             </div>
 
+            <!-- Video -->
             <div class="content-box">
-                <h3>Before the Session</h3>
+                <h3>Sesi Rekaman / Pre-Lecture</h3>
                 <div class="video-wrapper">
                     <iframe id="det-video" src="" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
 
+            <!-- Materials & Forms -->
             <div class="content-box">
                 <h3>During & After the Session</h3>
                 
                 <a id="det-link-deck" href="#" target="_blank" class="material-link">
-                    <span>📊</span>
+                    <span class="material-icon">📊</span>
                     <div>
-                        <div style="font-weight: 600; font-size: 0.95rem;">Check the Deck Materials here</div>
-                        <div id="det-deck-title" style="font-size: 0.85rem; color: var(--text-muted);"></div>
+                        <div style="font-weight: 600; font-size: 1rem;">Check the Deck Materials here</div>
+                        <div id="det-deck-title" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;"></div>
                     </div>
                 </a>
 
                 <a id="det-link-exercise" href="#" target="_blank" class="material-link">
-                    <span>📝</span>
+                    <span class="material-icon">📝</span>
                     <div>
-                        <div style="font-weight: 600; font-size: 0.95rem;">Please submit exercise form</div>
-                        <div id="det-exercise-title" style="font-size: 0.85rem; color: var(--text-muted);"></div>
+                        <div style="font-weight: 600; font-size: 1rem;">Please submit exercise form</div>
+                        <div id="det-exercise-title" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;"></div>
                     </div>
                 </a>
 
                 <a id="det-link-feedback" href="#" target="_blank" class="material-link">
-                    <span>✅</span>
+                    <span class="material-icon">✅</span>
                     <div>
-                        <div style="font-weight: 600; font-size: 0.95rem;">Submit attendance and feedback</div>
-                        <div id="det-feedback-title" style="font-size: 0.85rem; color: var(--text-muted);"></div>
+                        <div style="font-weight: 600; font-size: 1rem;">Submit attendance and feedback</div>
+                        <div id="det-feedback-title" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;"></div>
                     </div>
                 </a>
             </div>
@@ -244,21 +301,26 @@
     </div>
 
 
+    <!-- ============================================== -->
+    <!-- JAVASCRIPT ENGINE (JSON FETCHER)               -->
+    <!-- ============================================== -->
     <script>
         let appData = {};
 
-        // 1. FUNGSI FETCH JSON
+        // 1. FUNGSI FETCH JSON (PATH SUDAH DISESUAIKAN)
         async function loadData() {
             try {
+                // Fetch mengarah ke folder json/training.json
                 const res = await fetch('json/training.json');
-                if(!res.ok) throw new Error("Gagal mengambil training.json");
+                if(!res.ok) throw new Error("Gagal mengambil file JSON. Pastikan path json/training.json benar.");
                 appData = await res.json();
                 
                 renderGlobalData();
                 renderSessionsGrid();
             } catch (err) {
                 console.error(err);
-                document.getElementById('global-page-title').innerText = "Error memuat database!";
+                document.getElementById('global-page-title').innerText = "Gagal memuat data!";
+                document.getElementById('session-grid-container').innerHTML = `<p class="status-msg" style="color: var(--red-brand)">Terjadi kesalahan saat mengambil data dari <b>json/training.json</b>.<br>Error: ${err.message}</p>`;
             }
         }
 
@@ -266,18 +328,15 @@
         function renderGlobalData() {
             const g = appData.global;
             
-            // Teks Utama
             document.getElementById('global-page-title').innerText = g.pageTitle;
             document.getElementById('global-welcome-text').innerText = g.welcomeText;
             
-            // Gambar Journey
             if(g.learningJourneyImg) {
                 const imgEl = document.getElementById('global-journey-img');
                 imgEl.src = g.learningJourneyImg;
                 imgEl.style.display = "block";
             }
 
-            // Objectives (List)
             const objUl = document.getElementById('global-objectives');
             g.objectives.forEach(item => {
                 const li = document.createElement('li');
@@ -285,7 +344,6 @@
                 objUl.appendChild(li);
             });
 
-            // Ground Rules (List Checkbox style)
             const grUl = document.getElementById('global-ground-rules');
             g.groundRules.forEach(rule => {
                 const li = document.createElement('li');
@@ -294,7 +352,6 @@
             });
             document.getElementById('global-contact-info').innerText = g.contactInfo;
 
-            // Important Links
             const linksContainer = document.getElementById('important-links-container');
             g.importantLinks.forEach(link => {
                 const a = document.createElement('a');
@@ -303,12 +360,12 @@
                 a.className = "bookmark-card";
                 
                 a.innerHTML = `
-                    <div style="display: flex; gap: 8px;">
-                        <span>${link.emoji}</span>
+                    <div class="bm-header">
+                        <span class="bm-emoji">${link.emoji}</span>
                         <div class="bm-title">${link.title}</div>
                     </div>
                     <div class="bm-desc">
-                        <span style="font-weight: 500; color: var(--text-main);">${link.cardTitle}</span>
+                        <strong style="color: var(--text-main); display: block; margin-bottom: 5px;">${link.cardTitle}</strong>
                         ${link.description}
                     </div>
                 `;
@@ -319,7 +376,7 @@
         // 3. RENDER SESSION CARDS GRID
         function renderSessionsGrid() {
             const grid = document.getElementById('session-grid-container');
-            grid.innerHTML = ''; // bersihkan "loading"
+            grid.innerHTML = ''; 
 
             for (const key in appData.sessions) {
                 const s = appData.sessions[key];
@@ -344,13 +401,11 @@
             const s = appData.sessions[key];
             if(!s) return;
 
-            // Header Info
             document.getElementById('det-title').innerText = s.title;
             document.getElementById('det-category').innerText = s.category;
             document.getElementById('det-date').innerText = s.date;
             document.getElementById('det-participant').innerText = s.participant;
 
-            // Learnings
             const learnUl = document.getElementById('det-learnings');
             learnUl.innerHTML = '';
             s.learnings.forEach(item => {
@@ -359,15 +414,12 @@
                 learnUl.appendChild(li);
             });
 
-            // Speaker
             document.getElementById('det-speaker-name').innerText = s.speaker.name;
             document.getElementById('det-speaker-desc').innerText = s.speaker.desc;
             document.getElementById('det-speaker-img').src = s.speaker.image;
 
-            // Video
             document.getElementById('det-video').src = `https://www.youtube.com/embed/${s.materials.youtubeId}?rel=0`;
 
-            // Materials
             document.getElementById('det-link-deck').href = s.materials.deckUrl;
             document.getElementById('det-deck-title').innerText = `${s.materials.deckTitle} - ${s.materials.deckDesc}`;
             
@@ -377,35 +429,42 @@
             document.getElementById('det-link-feedback').href = s.materials.feedbackUrl;
             document.getElementById('det-feedback-title').innerText = s.materials.feedbackTitle;
 
-            // Pindah View
             document.getElementById('view-dashboard').classList.remove('active');
             document.getElementById('view-detail').classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // KEMBALI KE DASHBOARD
         function goBack() {
-            document.getElementById('det-video').src = ""; // Stop video
+            document.getElementById('det-video').src = ""; 
             document.getElementById('view-detail').classList.remove('active');
             document.getElementById('view-dashboard').classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // 5. TOGGLE TEMA
+        // 5. TOGGLE TEMA (Default Light Mode)
         const bodyEl = document.body;
         const themeBtn = document.getElementById('theme-btn');
         
+        // Cek preference
+        if (localStorage.getItem('training-theme') === 'dark') {
+            bodyEl.setAttribute('data-theme', 'dark');
+            themeBtn.innerText = '☀️';
+        }
+
         themeBtn.onclick = () => {
-            if(bodyEl.getAttribute('data-theme') === 'light') {
-                bodyEl.removeAttribute('data-theme'); // Kembali ke default (Dark)
-                themeBtn.innerText = '☀️';
-            } else {
-                bodyEl.setAttribute('data-theme', 'light');
+            if(bodyEl.getAttribute('data-theme') === 'dark') {
+                // Ubah ke Light Mode
+                bodyEl.removeAttribute('data-theme'); 
+                localStorage.setItem('training-theme', 'light');
                 themeBtn.innerText = '🌙';
+            } else {
+                // Ubah ke Dark Mode
+                bodyEl.setAttribute('data-theme', 'dark');
+                localStorage.setItem('training-theme', 'dark');
+                themeBtn.innerText = '☀️';
             }
         }
 
-        // Mulai aplikasi
         document.addEventListener("DOMContentLoaded", loadData);
     </script>
 </body>
