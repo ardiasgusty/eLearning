@@ -2,7 +2,7 @@
   "global": {
     "pageTitle": "RevoU X HPM: Digital Dealer Training | Perform",
     "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan RevoU.",
-    "learningJourneyImg": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC5vQQUxf-6eA2Ka7uaLWAo85m32iwWpUX06oPr4SQoa2xNyejEYbE-EBlMHwAysRmJ0bGi5XwUuzpJSK96RZrFjy_bXdPvO6jHhYwFamr0nRNjpSlqyM8kchTv2pJRqBHqwLgDTg5pSO2ULjwASQ4dK0GX5o5YOzqStS4g_HqqX_5N3Vp3TPcZxYl3t7B/s1600/crv.webp", 
+    "learningJourneyImg": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC5vQQUxf-6eA2Ka7uaLWAo85m32iwWpUX06oPr4SQoa2xNyejEYbE-EBlMHwAysRmJ0bGi5XwUuzpJSK96RZrFjy_bXdPvO6jHhYwFamr0nRNjpSlqyM8kchTv2pJRqBHqwLgDTg5pSO2ULjwASQ4dK0GX5o5YOzqStS4g_HqqX_5N3Vp3TPcZxYl3t7B/s1600/crv.webp",
     "objectives": [
       "Workflow konten Honda yang lebih terstruktur",
       "Konten selaras dengan brand identity Honda",
@@ -16,22 +16,37 @@
       "Berikan masukan agar kami dapat melakukan perbaikan 💯"
     ],
     "contactInfo": "Jika masih memiliki pertanyaan, dapat menghubungi Tim RevoU melalui Grup WhatsApp.",
-    "importantLinks": [
+    "importantBlocks": [
       {
-        "id": "link-1",
-        "emoji": "1️⃣",
-        "title": "Attendance & Feedback Form",
-        "cardTitle": "Feedback-CT",
-        "url": "https://feedback-ct.paperform.co/",
-        "description": ""
+        "type": "heading",
+        "text": "1️⃣ Attendance & Feedback Form 👇"
       },
       {
-        "id": "link-2",
-        "emoji": "2️⃣",
-        "title": "Pre-test Assessment (Foundation)",
-        "cardTitle": "Pre-Test: Perform",
-        "url": "https://forms.gle/oJLN...",
-        "description": "<ul><li>Mohon lengkapi pre-test untuk membantu kami memahami tingkat kemampuanmu saat ini.</li><li><b>Deadline: Rabu, 17 Juni 2026 pukul 09.00 WIB</b></li></ul>"
+        "type": "heading-sub",
+        "text": "RevoU Attendance & Feedback Form"
+      },
+      {
+        "type": "card",
+        "title": "Feedback-CT",
+        "urlText": "https://feedback-ct.paperform.co/...",
+        "url": "https://feedback-ct.paperform.co/"
+      },
+      {
+        "type": "heading",
+        "text": "2️⃣ Pre-test Assessment (Foundation) 👇"
+      },
+      {
+        "type": "card",
+        "title": "Pre-Test: Perform",
+        "urlText": "https://forms.gle/oJLNFyTRxMQ1ix1z9",
+        "url": "https://forms.gle/oJLNFyTRxMQ1ix1z9"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mohon lengkapi pre-test untuk membantu kami memahami tingkat kemampuanmu saat ini.",
+          "<b>Deadline: Rabu, 17 Juni 2026 pukul 09.00 WIB</b> (sebelum sesi 1 dimulai)"
+        ]
       }
     ]
   },
@@ -49,19 +64,32 @@
       "learnings": [
         "Framework evaluasi channel: platform mana yang menghasilkan leads nyata vs sekadar vanity metrics",
         "Funnel performance review: di tahap mana calon pembeli Honda berhenti sebelum menghubungi dealer?",
-        "Optimasi peran platform: Instagram sebagai engine utama awareness dan engagement lokal",
-        "Metodologi gap analysis: benchmark performa instagram dealer sendiri vs rata-rata industri otomotif",
-        "Identifikasi bottleneck utama: apakah masalah di kualitas konten, konsistensi posting, atau penanganan DM dan komentar?"
+        "Optimasi peran platform: Instagram sebagai engine utama awareness dan engagement lokal"
       ],
       "materials": {
         "youtubeId": "y1RzB_7qYvE",
-        "deckTitle": "Sesi 1 HPM (Perform)",
-        "deckDesc": "Slide presentasi materi evaluasi channel",
-        "deckUrl": "#link-deck-google-slide",
-        "exerciseTitle": "Form Latihan Sesi 1",
-        "exerciseUrl": "#link-google-form-tugas",
-        "feedbackTitle": "Feedback-CT",
-        "feedbackUrl": "#link-paperform-feedback"
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Check the Deck Materials here",
+            "desc": "Sesi 1 HPM (Perform) - Slide presentasi materi evaluasi channel",
+            "url": "#"
+          },
+          {
+            "icon": "📝",
+            "title": "Please submit exercise form",
+            "desc": "Form Latihan Sesi 1",
+            "url": "#"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Submit attendance and feedback",
+            "desc": "Feedback-CT",
+            "url": "#"
+          }
+        ]
       }
     },
     "sesi-2": {
@@ -72,7 +100,7 @@
       "speaker": {
         "name": "Budi Santoso",
         "image": "https://placehold.co/300x300/3399ff/fff?text=Budi",
-        "desc": "Ahli dalam menganalisis Customer Journey Mapping untuk industri otomotif dengan pengalaman lebih dari 10 tahun."
+        "desc": "Ahli dalam menganalisis Customer Journey Mapping untuk industri otomotif."
       },
       "learnings": [
         "Memahami tahapan pembeli dari Awareness hingga Decision",
@@ -81,13 +109,22 @@
       ],
       "materials": {
         "youtubeId": "dQw4w9WgXcQ",
-        "deckTitle": "Sesi 2 HPM (Journey)",
-        "deckDesc": "Slide materi Customer Journey",
-        "deckUrl": "#",
-        "exerciseTitle": "Form Latihan Sesi 2",
-        "exerciseUrl": "#",
-        "feedbackTitle": "Feedback-CT",
-        "feedbackUrl": "#"
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Check the Deck Materials here",
+            "desc": "Sesi 2 HPM (Journey) - Slide materi",
+            "url": "#"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Submit attendance and feedback",
+            "desc": "Feedback-CT",
+            "url": "#"
+          }
+        ]
       }
     }
   }
