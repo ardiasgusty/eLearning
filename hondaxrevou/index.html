@@ -266,15 +266,15 @@
             } catch (err) {
                 console.error(err);
                 document.getElementById('global-page-title').innerText = "Gagal memuat data!";
-                document.getElementById('session-grid-container').innerHTML = `<p class="status-msg" style="color: var(--red-brand)">Error: ${err.message}</p>`;
+                document.getElementById('session-grid-container').innerHTML = `<p class="status-msg" style="color: var(--red-brand)">Error: ${err.message}<br><br><small>Pastikan format JSON kamu sudah menggunakan struktur terbaru.</small></p>`;
             }
         }
 
         function renderGlobalData() {
-            const g = appData.global;
+            const g = appData.global || {}; // Safety check global
             
-            document.getElementById('global-page-title').innerText = g.pageTitle;
-            document.getElementById('global-welcome-text').innerText = g.welcomeText;
+            document.getElementById('global-page-title').innerText = g.pageTitle || "Judul Tidak Ditemukan";
+            document.getElementById('global-welcome-text').innerText = g.welcomeText || "";
             
             if(g.learningJourneyImg) {
                 const imgEl = document.getElementById('global-journey-img');
@@ -282,26 +282,31 @@
                 imgEl.style.display = "block";
             }
 
+            // SAFETY CHECK: Pakai tanda tanya (?.) agar tidak error jika array tidak ada
             const objUl = document.getElementById('global-objectives');
-            g.objectives.forEach(item => {
+            objUl.innerHTML = '';
+            g.objectives?.forEach(item => {
                 const li = document.createElement('li');
                 li.innerText = item;
                 objUl.appendChild(li);
             });
 
             const grUl = document.getElementById('global-ground-rules');
-            g.groundRules.forEach(rule => {
+            grUl.innerHTML = '';
+            g.groundRules?.forEach(rule => {
                 const li = document.createElement('li');
                 li.innerHTML = rule;
                 grUl.appendChild(li);
             });
-            document.getElementById('global-contact-info').innerText = g.contactInfo;
+            
+            document.getElementById('global-contact-info').innerText = g.contactInfo || "";
 
             // RENDER DINAMIS IMPORTANT LINKS BLOCK
             const linksContainer = document.getElementById('important-links-container');
             linksContainer.innerHTML = '';
             
-            g.importantBlocks.forEach(block => {
+            // SAFETY CHECK
+            g.importantBlocks?.forEach(block => {
                 if(block.type === 'heading') {
                     const h = document.createElement('div');
                     h.className = 'block-heading';
@@ -327,7 +332,7 @@
                 } else if(block.type === 'list') {
                     const ul = document.createElement('ul');
                     ul.className = 'block-list';
-                    block.items.forEach(item => {
+                    block.items?.forEach(item => {
                         const li = document.createElement('li');
                         li.innerHTML = item;
                         ul.appendChild(li);
@@ -341,8 +346,9 @@
             const grid = document.getElementById('session-grid-container');
             grid.innerHTML = ''; 
 
-            for (const key in appData.sessions) {
-                const s = appData.sessions[key];
+            const sessions = appData.sessions || {};
+            for (const key in sessions) {
+                const s = sessions[key];
                 const card = document.createElement('div');
                 card.className = "session-card";
                 card.onclick = () => openDetail(key);
@@ -350,9 +356,9 @@
                 card.innerHTML = `
                     <div class="card-header">Digital Dealer Training</div>
                     <div class="card-body">
-                        <h4>📄 ${s.title}</h4>
-                        <span class="card-badge">${s.category}</span>
-                        <div class="card-date">${s.date}</div>
+                        <h4>📄 ${s.title || "Sesi Tanpa Judul"}</h4>
+                        <span class="card-badge">${s.category || "General"}</span>
+                        <div class="card-date">${s.date || ""}</div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -361,11 +367,11 @@
 
         function createMaterialLink(mat) {
             return `
-                <a href="${mat.url}" target="_blank" class="material-link">
-                    <span class="material-icon">${mat.icon}</span>
+                <a href="${mat.url || '#'}" target="_blank" class="material-link">
+                    <span class="material-icon">${mat.icon || '🔗'}</span>
                     <div>
-                        <div style="font-weight: 600; font-size: 1rem;">${mat.title}</div>
-                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">${mat.desc}</div>
+                        <div style="font-weight: 600; font-size: 1rem;">${mat.title || 'Link'}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">${mat.desc || ''}</div>
                     </div>
                 </a>
             `;
@@ -375,41 +381,46 @@
             const s = appData.sessions[key];
             if(!s) return;
 
-            document.getElementById('det-title').innerText = s.title;
-            document.getElementById('det-category').innerText = s.category;
-            document.getElementById('det-date').innerText = s.date;
-            document.getElementById('det-participant').innerText = s.participant;
+            document.getElementById('det-title').innerText = s.title || "";
+            document.getElementById('det-category').innerText = s.category || "";
+            document.getElementById('det-date').innerText = s.date || "";
+            document.getElementById('det-participant').innerText = s.participant || "";
 
             const learnUl = document.getElementById('det-learnings');
             learnUl.innerHTML = '';
-            s.learnings.forEach(item => {
+            // SAFETY CHECK
+            s.learnings?.forEach(item => {
                 const li = document.createElement('li');
                 li.innerText = item;
                 learnUl.appendChild(li);
             });
 
-            document.getElementById('det-speaker-name').innerText = s.speaker.name;
-            document.getElementById('det-speaker-desc').innerText = s.speaker.desc;
-            document.getElementById('det-speaker-img').src = s.speaker.image;
+            if(s.speaker) {
+                document.getElementById('det-speaker-name').innerText = s.speaker.name || "";
+                document.getElementById('det-speaker-desc').innerText = s.speaker.desc || "";
+                document.getElementById('det-speaker-img').src = s.speaker.image || "https://placehold.co/300x300";
+            }
 
-            document.getElementById('det-video').src = `https://www.youtube.com/embed/${s.materials.youtubeId}?rel=0`;
+            if(s.materials && s.materials.youtubeId) {
+                document.getElementById('det-video').src = `https://www.youtube.com/embed/${s.materials.youtubeId}?rel=0`;
+            }
 
-            // Render During Session Dinamis
+            // Render During Session Dinamis dengan SAFETY CHECK
             const duringContainer = document.getElementById('container-during');
             const duringSection = document.getElementById('section-during');
             duringContainer.innerHTML = '';
-            if(s.materials.during && s.materials.during.length > 0) {
+            if(s.materials?.during && s.materials.during.length > 0) {
                 s.materials.during.forEach(mat => duringContainer.innerHTML += createMaterialLink(mat));
                 duringSection.style.display = "block";
             } else {
                 duringSection.style.display = "none";
             }
 
-            // Render After Session Dinamis
+            // Render After Session Dinamis dengan SAFETY CHECK
             const afterContainer = document.getElementById('container-after');
             const afterSection = document.getElementById('section-after');
             afterContainer.innerHTML = '';
-            if(s.materials.after && s.materials.after.length > 0) {
+            if(s.materials?.after && s.materials.after.length > 0) {
                 s.materials.after.forEach(mat => afterContainer.innerHTML += createMaterialLink(mat));
                 afterSection.style.display = "block";
             } else {
@@ -428,7 +439,7 @@
             window.scrollTo(0,0);
         }
 
-        // TOGGLE TEMA (Default Light Mode)
+        // TOGGLE TEMA
         const bodyEl = document.body;
         const themeBtn = document.getElementById('theme-btn');
         
