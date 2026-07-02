@@ -1,389 +1,758 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training JSON Generator - RevoU x HPM</title>
-    <style>
-        :root {
-            --primary: #cc0000; 
-            --primary-hover: #a30000;
-            --bg: #f4f6f9;
-            --card: #ffffff;
-            --border: #ddd;
-            --text: #333;
-            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        * { box-sizing: border-box; font-family: var(--font); }
-        body { margin: 0; padding: 0; background-color: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
-        
-        /* HEADER */
-        .header { background: #111; color: #fff; padding: 15px 20px; font-size: 18px; font-weight: bold; position: fixed; top: 0; width: 100%; z-index: 10; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
-        
-        /* LAYOUT CONTAINER */
-        .container { display: flex; width: 100%; margin-top: 55px; height: calc(100vh - 55px); }
-        .editor-panel { flex: 6; padding: 20px; overflow-y: auto; background: var(--bg); border-right: 2px solid var(--border); }
-        .output-panel { flex: 4; padding: 20px; display: flex; flex-direction: column; background: #fff; }
-        
-        /* CARDS & FORMS */
-        .section-title { font-size: 1.4rem; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-bottom: 20px; margin-top: 10px;}
-        .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .card-header h3 { margin: 0; color: #111; }
-        
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 13px; color: #555; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; font-family: var(--font);}
-        .form-control:focus { border-color: var(--primary); outline: none; }
-        textarea.form-control { resize: vertical; min-height: 80px; }
-        textarea.json-field { font-family: 'Courier New', Courier, monospace; background: #fdfdfd; border-left: 3px solid #ffc107;}
-        textarea.json-field.error { border-left: 3px solid red; background: #fff5f5; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Training JSON Generator + GitHub Sync</title>
 
-        .flex-row { display: flex; gap: 15px; }
-        .flex-1 { flex: 1; }
-        
-        .help-text { font-size: 11px; color: #888; margin-top: 4px; display: block; }
+<style>
+:root {
+    --primary: #cc0000;
+    --primary-hover: #a30000;
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --border: #ddd;
+    --text: #333;
+    --github: #24292e;
+    --github-hover: #1a1e22;
+    --success: #2cbe4e;
+    --success-hover: #228b3a;
+}
 
-        /* BUTTONS */
-        .btn { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.2s; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--primary-hover); }
-        .btn-secondary { background: #555; color: white; }
-        .btn-secondary:hover { background: #333; }
-        .btn-danger { background: #dc3545; color: white; padding: 6px 12px; font-size: 12px; }
-        .btn-danger:hover { background: #c82333; }
-        .btn-block { width: 100%; padding: 12px; font-size: 14px; margin-top: 10px; }
+*{ box-sizing:border-box; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
 
-        /* OUTPUT PANEL */
-        #json-output { width: 100%; flex: 1; padding: 15px; font-family: 'Courier New', Courier, monospace; font-size: 13px; background: #1e1e1e; color: #d4d4d4; border-radius: 6px; border: none; resize: none; margin-top: 10px; margin-bottom: 15px;}
-        
-        /* TABS for Sessions */
-        .session-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;}
-        .tab-btn { padding: 8px 15px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 13px;}
-        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary-hover); }
-    </style>
+body{ margin:0; background:var(--bg); display:flex; height:100vh; overflow:hidden; }
+
+.header{ background:#111; color:#fff; padding:15px 25px; font-size:20px; font-weight:bold; position:fixed; width:100%; z-index:10; display:flex; justify-content:space-between; }
+.container{ display:flex; width:100%; margin-top:60px; height:calc(100vh - 60px); }
+.editor-panel{ flex:6; padding:25px; overflow-y:auto; border-right:1px solid var(--border); }
+.output-panel{ flex:4; padding:25px; background:#fff; display:flex; flex-direction:column; }
+
+.category-card{ background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px 25px; margin-bottom:20px; transition:.2s; }
+.category-card:hover{ box-shadow:0 4px 12px rgba(0,0,0,.08); }
+.category-header{ display:flex; justify-content:space-between; border-bottom:2px solid var(--primary); padding-bottom:10px; margin-bottom:20px; }
+
+.item-card{ background:#fdfdfd; border:1px solid #eee; border-left:4px solid var(--primary); border-radius:6px; padding:18px; margin-bottom: 20px;}
+
+.form-group{ margin-bottom:12px; }
+.form-group label{ font-size:13px; font-weight:600; display:block; margin-bottom:6px; color:#555;}
+.form-control{ width:100%; padding:8px; border:1px solid #ccc; border-radius:4px; outline:none; font-family: inherit;}
+.form-control:focus{ border-color:var(--primary); }
+textarea.form-control { resize: vertical; min-height: 80px; }
+textarea.json-field { font-family: 'Courier New', Courier, monospace; background: #fdfdfd; border-left: 3px solid #ffc107; font-size:12px;}
+textarea.json-field.error { border-left: 3px solid red; background: #fff5f5; }
+
+.image-preview{ margin-top:10px; position: relative; }
+.image-preview img{ width:100%; max-height:180px; object-fit:cover; border-radius:6px; border:1px solid #ddd; background:#f5f5f5; display:block; }
+
+.btn{ padding:8px 14px; border-radius:4px; cursor:pointer; border:none; font-weight:bold; transition:.2s; font-size: 13px; }
+.btn-primary{ background:var(--primary); color:white; }
+.btn-primary:hover{ background:var(--primary-hover); }
+.btn-secondary{ background:#555; color:white; }
+.btn-danger{ background:#dc3545; color:white; }
+.btn-outline{ border:1px solid #ccc; background:transparent; }
+.btn-github { background: var(--github); color: white; }
+.btn-github:hover { background: var(--github-hover); }
+.btn-success { background: var(--success); color: white; }
+.btn-success:hover { background: var(--success-hover); }
+
+.btn:hover:not(:disabled){ transform:translateY(-1px); }
+.btn:disabled{ opacity: 0.4; cursor: not-allowed; }
+
+#json-output{ flex:1; margin-top:10px; padding:15px; font-family:monospace; background:#282c34; color:#d1d9e1; border-radius:6px; border:none; resize:none; font-size: 13px;}
+.flex-row{ display:flex; gap:10px; margin-top:10px; }
+.flex-1{ flex:1; }
+.section-title{ font-size:18px; margin-bottom:15px; border-bottom:2px solid #ccc; padding-bottom:5px; margin-top: 30px; font-weight:bold;}
+
+.upload-box { border: 2px dashed #ccc; padding: 15px; text-align: center; border-radius: 6px; background: #fafafa; margin-top: 5px; transition: 0.2s;}
+.upload-box:hover { border-color: var(--primary); background: #fff9f9;}
+.upload-box input[type="file"] { display: none; }
+.upload-box label { cursor: pointer; color: var(--primary); font-weight: bold; display: inline-block; padding: 5px 10px; }
+
+/* TABS for Sessions */
+.session-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;}
+.tab-btn { padding: 8px 15px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 13px;}
+.tab-btn.active { background: var(--primary); color: white; border-color: var(--primary-hover); }
+
+/* MODAL FILE BROWSER */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 100; display: none; justify-content: center; align-items: center; }
+.modal-content { background: #fff; width: 500px; max-height: 80vh; border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+.modal-header { padding: 15px 20px; background: var(--bg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.file-list { padding: 10px; overflow-y: auto; flex: 1; background: #fafafa; }
+.file-item { padding: 12px 15px; border-bottom: 1px solid #eaeaea; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 14px; transition: 0.1s; }
+.file-item:hover { background: #eef2f5; }
+.file-item.disabled { opacity: 0.4; cursor: not-allowed; }
+</style>
 </head>
+
 <body>
 
-    <div class="header">
-        <div>📝 Training JSON Generator</div>
-        <div style="font-size: 13px; font-weight: normal;">Created for Argust</div>
-    </div>
+<div class="header">
+    <div>Training JSON Generator</div>
+    <div style="font-size:14px; font-weight: normal;">Created for Argust</div>
+</div>
 
-    <div class="container">
-        <div class="editor-panel">
-            
-            <div class="section-title">🌍 Global Settings</div>
-            <div class="card" id="global-container">
-                </div>
+<div class="container">
 
-            <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
-                <span>📚 Class Sessions</span>
-                <button class="btn btn-primary" onclick="addNewSession()">+ Tambah Sesi</button>
+    <div class="editor-panel">
+
+        <div class="category-card" style="border-left: 4px solid var(--github);">
+            <div class="category-header" style="border-bottom: 2px solid var(--github); margin-bottom: 15px;">
+                <h3 style="margin: 0; font-size: 16px;">🔗 GitHub Integration Sync</h3>
             </div>
             
-            <div class="session-tabs" id="session-tabs">
-                </div>
-
-            <div id="session-editor-container">
-                </div>
-
-        </div>
-
-        <div class="output-panel">
-            <h3 style="margin-top: 0; margin-bottom: 5px;">Output JSON</h3>
-            <p style="font-size: 12px; color: #666; margin-top: 0;">Kamu bisa paste JSON lama kamu di sini, lalu klik Load untuk mengedit.</p>
-            <textarea id="json-output"></textarea>
+            <div class="form-group">
+                <label>Personal Access Token (PAT)</label>
+                <input type="password" id="gh-token" class="form-control" placeholder="ghp_xxxxxxxxxxxx" oninput="saveConfig()">
+            </div>
+            
             <div class="flex-row">
-                <button class="btn btn-primary flex-1" onclick="copyJSON()">📋 Copy JSON</button>
-                <button class="btn btn-secondary flex-1" onclick="loadFromOutput()">🔄 Load Data</button>
+                <div class="form-group flex-1">
+                    <label>Username / Owner</label>
+                    <input type="text" id="gh-owner" class="form-control" placeholder="Contoh: ardiasgusty" oninput="saveConfig()">
+                </div>
+                <div class="form-group flex-1">
+                    <label>Repository</label>
+                    <input type="text" id="gh-repo" class="form-control" placeholder="Contoh: elearning" oninput="saveConfig()">
+                </div>
             </div>
+
+            <div class="form-group">
+                <label>File Path JSON Utama (.json)</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="gh-path" class="form-control" placeholder="Contoh: json/training.json" oninput="saveConfig()">
+                    <button class="btn btn-secondary" onclick="openFileBrowser('', 'file')" style="white-space: nowrap;">📁 Browse File</button>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <label>Folder Upload Gambar (Tanpa slash di akhir)</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="gh-img-folder" class="form-control" placeholder="Contoh: assets/images" oninput="saveConfig()">
+                    <button class="btn btn-secondary" onclick="openFileBrowser('', 'folder')" style="white-space: nowrap;">📁 Browse Folder</button>
+                </div>
+                <small style="color: #666; font-size: 11px;">*Gambar yang kamu upload akan disimpan otomatis ke folder ini.</small>
+            </div>
+            
+            <div class="flex-row" style="margin-top: 15px;">
+                <button class="btn btn-github flex-1" onclick="fetchFromGitHub()">↓ Tarik Data JSON</button>
+                <button class="btn btn-success flex-1" onclick="saveToGitHub()">↑ Simpan JSON Langsung</button>
+            </div>
+        </div>
+
+        <div class="section-title">🌍 Global Settings</div>
+        <div class="category-card" id="global-container">
+            </div>
+
+        <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+            <span>📚 Class Sessions</span>
+            <button class="btn btn-primary" onclick="addNewSession()">+ Tambah Sesi Baru</button>
+        </div>
+        
+        <div class="session-tabs" id="session-tabs">
+            </div>
+
+        <div id="session-editor-container">
+            </div>
+
+    </div>
+
+    <div class="output-panel">
+        <h3 style="margin-top: 0; margin-bottom: 5px;">Output JSON</h3>
+        <p style="font-size: 12px; color: #666; margin-top: 0;">Kamu bisa paste JSON di sini, lalu klik Load untuk mengedit.</p>
+        <textarea id="json-output"></textarea>
+        <div class="flex-row">
+            <button class="btn btn-primary flex-1" onclick="copyJSON()">📋 Copy JSON</button>
+            <button class="btn btn-secondary flex-1" onclick="loadFromOutput()">🔄 Load Data</button>
         </div>
     </div>
 
-    <script>
-        // 1. DATA DEFAULT AWAL
-        let data = {
-          "global": {
-            "pageTitle": "RevoU X HPM: Digital Dealer Training | Perform",
-            "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan RevoU.",
-            "learningJourneyImg": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC5vQQUxf-6eA2Ka7uaLWAo85m32iwWpUX06oPr4SQoa2xNyejEYbE-EBlMHwAysRmJ0bGi5XwUuzpJSK96RZrFjy_bXdPvO6jHhYwFamr0nRNjpSlqyM8kchTv2pJRqBHqwLgDTg5pSO2ULjwASQ4dK0GX5o5YOzqStS4g_HqqX_5N3Vp3TPcZxYl3t7B/s1600/crv.webp",
-            "objectives": [
-              "Workflow konten Honda yang lebih terstruktur",
-              "Konten selaras dengan brand identity Honda",
-              "Konsistensi publikasi dan engagement meningkat",
-              "Rencana aksi dan KPI yang terukur"
-            ],
-            "groundRules": [
-              "Datang tepat waktu 🤫",
-              "Berpartisipasi dan ajukan pertanyaan selama pembelajaran 🙋",
-              "Biasakan dirimu dengan semua alat kelas dan hubungi Class Manager di grup WhatsApp jika menghadapi kesulitan teknis 👩‍💻",
-              "Berikan masukan agar kami dapat melakukan perbaikan 💯"
-            ],
-            "contactInfo": "Jika masih memiliki pertanyaan, dapat menghubungi Tim RevoU melalui Grup WhatsApp.",
-            "importantBlocks": [
-              { "type": "heading", "text": "1️⃣ Attendance & Feedback Form 👇" },
-              { "type": "heading-sub", "text": "RevoU Attendance & Feedback Form" },
-              { "type": "card", "title": "Feedback-CT", "urlText": "https://feedback-ct.paperform.co/...", "url": "https://feedback-ct.paperform.co/" },
-              { "type": "heading", "text": "2️⃣ Pre-test Assessment (Foundation) 👇" },
-              { "type": "card", "title": "Pre-Test: Perform", "urlText": "https://forms.gle/oJLNFyTRxMQ1ix1z9", "url": "https://forms.gle/oJLNFyTRxMQ1ix1z9" },
-              { "type": "list", "items": [ "Mohon lengkapi pre-test untuk membantu kami memahami tingkat kemampuanmu saat ini.", "<b>Deadline: Rabu, 17 Juni 2026 pukul 09.00 WIB</b> (sebelum sesi 1 dimulai)" ] }
-            ]
-          },
-          "sessions": {
-            "sesi-1": {
-              "title": "Sesi #1 - Evaluasi Channel: Seberapa Efektif yang Sudah Berjalan?",
-              "category": "Class Session",
-              "date": "June 17, 2026",
-              "participant": "All",
-              "speaker": {
-                "name": "Adinda Nindyachandra",
-                "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
-                "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
-              },
-              "learnings": [
-                "Framework evaluasi channel: platform mana yang menghasilkan leads nyata vs sekadar vanity metrics",
-                "Funnel performance review: di tahap mana calon pembeli Honda berhenti sebelum menghubungi dealer?",
-                "Optimasi peran platform: Instagram sebagai engine utama awareness dan engagement lokal"
-              ],
-              "materials": {
-                "youtubeId": "y1RzB_7qYvE",
-                "during": [
-                  { "icon": "📊", "title": "Check the Deck Materials here", "desc": "Sesi 1 HPM (Perform) - Slide presentasi materi evaluasi channel", "url": "#" },
-                  { "icon": "📝", "title": "Please submit exercise form", "desc": "Form Latihan Sesi 1", "url": "#" }
-                ],
-                "after": [
-                  { "icon": "✅", "title": "Submit attendance and feedback", "desc": "Feedback-CT", "url": "#" }
-                ]
-              }
-            }
-          }
-        };
+</div>
 
-        let activeSessionKey = "sesi-1";
+<div id="fileBrowserModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-title" style="margin:0; font-size: 16px;">📂 Pilih File JSON</h3>
+            <div style="display: flex; gap: 10px;">
+                <button id="btn-select-folder" class="btn btn-success" onclick="confirmFolderSelection()" style="display: none; padding:4px 8px;">Pilih Folder Ini</button>
+                <button class="btn btn-danger" onclick="closeFileBrowser()" style="padding:4px 8px;">X</button>
+            </div>
+        </div>
+        <div id="file-list" class="file-list"></div>
+    </div>
+</div>
 
-        // 2. HELPER FUNCTIONS
-        function arrToStr(arr) { return arr ? arr.join('\n') : ''; }
-        function strToArr(str) { return str.split('\n').map(s => s.trim()).filter(s => s !== ''); }
+<script>
 
-        function updateOutput() {
-            document.getElementById('json-output').value = JSON.stringify(data, null, 2);
+/* =======================================================
+   1. DATA STRUKTUR (DEFAULT)
+   ======================================================= */
+let data = {
+  "global": {
+    "pageTitle": "RevoU X HPM: Digital Dealer Training | Perform",
+    "welcomeText": "Selamat datang di Program Digital Dealer Training...",
+    "learningJourneyImg": "",
+    "objectives": ["Workflow konten Honda yang lebih terstruktur"],
+    "groundRules": ["Datang tepat waktu 🤫"],
+    "contactInfo": "Jika masih memiliki pertanyaan, dapat menghubungi Tim RevoU.",
+    "importantBlocks": [
+      { "type": "heading", "text": "1️⃣ Attendance & Feedback Form 👇" },
+      { "type": "card", "title": "Feedback-CT", "urlText": "https://...", "url": "https://..." }
+    ]
+  },
+  "sessions": {
+    "sesi-1": {
+      "title": "Sesi #1 - Evaluasi Channel",
+      "category": "Class Session",
+      "date": "June 17, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian..."
+      },
+      "learnings": ["Framework evaluasi channel"],
+      "materials": {
+        "youtubeId": "y1RzB_7qYvE",
+        "during": [ { "icon": "📊", "title": "Check the Deck Materials here", "desc": "Sesi 1 HPM", "url": "#" } ],
+        "after": [ { "icon": "✅", "title": "Submit attendance", "desc": "Feedback-CT", "url": "#" } ]
+      }
+    }
+  }
+};
+
+let activeSessionKey = "sesi-1";
+let currentFileSha = "";
+let currentBrowserMode = 'file'; 
+let currentBrowsePath = '';
+
+/* =======================================================
+   2. HELPER & RENDER LOGIC
+   ======================================================= */
+function arrToStr(arr) { return arr ? arr.join('\n') : ''; }
+function strToArr(str) { return str.split('\n').map(s => s.trim()).filter(s => s !== ''); }
+
+function updateOutput() {
+    document.getElementById('json-output').value = JSON.stringify(data, null, 2);
+}
+
+function updateComplexJSON(path, value, textareaElement) {
+    try {
+        let parsed = JSON.parse(value);
+        textareaElement.classList.remove('error');
+        
+        let parts = path.split('.');
+        if(parts[0] === 'global') {
+            data.global[parts[1]] = parsed;
+        } else if(parts[0] === 'sessions') {
+            data.sessions[parts[1]].materials[parts[2]] = parsed;
         }
+        updateOutput();
+    } catch (e) {
+        textareaElement.classList.add('error');
+    }
+}
 
-        // Fungsi khusus update untuk field JSON Editor (Pencegah Error)
-        function updateComplexJSON(path, value, textareaElement) {
-            try {
-                let parsed = JSON.parse(value);
-                textareaElement.classList.remove('error');
-                
-                // Set data berdasarkan path
-                let parts = path.split('.');
-                if(parts[0] === 'global') {
-                    data.global[parts[1]] = parsed;
-                } else if(parts[0] === 'sessions') {
-                    data.sessions[parts[1]].materials[parts[2]] = parsed;
-                }
-                updateOutput();
-            } catch (e) {
-                textareaElement.classList.add('error');
-            }
-        }
+function renderEditor() {
+    renderGlobal();
+    renderSessionTabs();
+    renderActiveSession();
+    updateOutput();
+}
 
-        // 3. RENDER GLOBAL SETTINGS
-        function renderGlobal() {
-            const g = data.global;
-            const container = document.getElementById('global-container');
+function renderGlobal() {
+    const g = data.global;
+    const container = document.getElementById('global-container');
+    
+    container.innerHTML = `
+        <div class="flex-row">
+            <div class="form-group flex-1">
+                <label>Page Title</label>
+                <input type="text" class="form-control" value="${g.pageTitle}" oninput="data.global.pageTitle = this.value; updateOutput();">
+            </div>
+            <div class="form-group flex-1">
+                <label>Contact Info (WhatsApp text)</label>
+                <input type="text" class="form-control" value="${g.contactInfo}" oninput="data.global.contactInfo = this.value; updateOutput();">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Welcome Text</label>
+            <textarea class="form-control" style="min-height:60px;" oninput="data.global.welcomeText = this.value; updateOutput();">${g.welcomeText}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Learning Journey Image URL</label>
+            <input type="text" class="form-control" value="${g.learningJourneyImg}" oninput="data.global.learningJourneyImg = this.value; updateOutput();">
             
-            container.innerHTML = `
-                <div class="flex-row">
-                    <div class="form-group flex-1">
-                        <label>Page Title</label>
-                        <input type="text" class="form-control" value="${g.pageTitle}" oninput="data.global.pageTitle = this.value; updateOutput();">
-                    </div>
-                    <div class="form-group flex-1">
-                        <label>Contact Info (WhatsApp text)</label>
-                        <input type="text" class="form-control" value="${g.contactInfo}" oninput="data.global.contactInfo = this.value; updateOutput();">
-                    </div>
-                </div>
+            <div class="upload-box" id="upload-box-global">
+                <label for="file-global">📸 Pilih & Upload Gambar Journey ke GitHub</label>
+                <input type="file" id="file-global" accept="image/*" onchange="uploadImageToGitHub('globalJourney', this)">
+                <div id="upload-status-global" style="font-size: 12px; color: var(--success); margin-top: 5px; font-weight: bold;"></div>
+            </div>
 
-                <div class="form-group">
-                    <label>Welcome Text</label>
-                    <textarea class="form-control" style="min-height:60px;" oninput="data.global.welcomeText = this.value; updateOutput();">${g.welcomeText}</textarea>
-                </div>
+            ${g.learningJourneyImg ? `
+            <div class="image-preview">
+                <img src="${g.learningJourneyImg}" alt="preview" onerror="this.style.display='none'">
+            </div>
+            ` : ''}
+        </div>
 
-                <div class="form-group">
-                    <label>Learning Journey Image URL</label>
-                    <input type="text" class="form-control" value="${g.learningJourneyImg}" oninput="data.global.learningJourneyImg = this.value; updateOutput();">
-                </div>
+        <div class="flex-row">
+            <div class="form-group flex-1">
+                <label>Objectives (Pisahkan dengan Enter)</label>
+                <textarea class="form-control" oninput="data.global.objectives = strToArr(this.value); updateOutput();">${arrToStr(g.objectives)}</textarea>
+            </div>
+            <div class="form-group flex-1">
+                <label>Ground Rules (Pisahkan dengan Enter)</label>
+                <textarea class="form-control" oninput="data.global.groundRules = strToArr(this.value); updateOutput();">${arrToStr(g.groundRules)}</textarea>
+            </div>
+        </div>
 
-                <div class="flex-row">
-                    <div class="form-group flex-1">
-                        <label>Objectives (Pisahkan dengan Enter)</label>
-                        <textarea class="form-control" oninput="data.global.objectives = strToArr(this.value); updateOutput();">${arrToStr(g.objectives)}</textarea>
-                    </div>
-                    <div class="form-group flex-1">
-                        <label>Ground Rules (Pisahkan dengan Enter)</label>
-                        <textarea class="form-control" oninput="data.global.groundRules = strToArr(this.value); updateOutput();">${arrToStr(g.groundRules)}</textarea>
-                    </div>
-                </div>
+        <div class="form-group">
+            <label>Important Blocks (Editor JSON)</label>
+            <textarea class="form-control json-field" style="min-height: 200px;" oninput="updateComplexJSON('global.importantBlocks', this.value, this)">${JSON.stringify(g.importantBlocks, null, 2)}</textarea>
+        </div>
+    `;
+}
 
-                <div class="form-group">
-                    <label>Important Blocks (Editor JSON)</label>
-                    <span class="help-text">Edit langsung format JSON-nya. Pastikan tidak ada koma tertinggal atau tanda kutip yang hilang.</span>
-                    <textarea class="form-control json-field" style="min-height: 200px;" oninput="updateComplexJSON('global.importantBlocks', this.value, this)">${JSON.stringify(g.importantBlocks, null, 2)}</textarea>
-                </div>
-            `;
-        }
+function renderSessionTabs() {
+    const tabsContainer = document.getElementById('session-tabs');
+    tabsContainer.innerHTML = '';
+    
+    const keys = Object.keys(data.sessions);
+    if(keys.length === 0) {
+        document.getElementById('session-editor-container').innerHTML = '<p>Belum ada sesi. Silakan tambah.</p>';
+        return;
+    }
 
-        // 4. RENDER SESSION TABS
-        function renderSessionTabs() {
-            const tabsContainer = document.getElementById('session-tabs');
-            tabsContainer.innerHTML = '';
-            
-            const keys = Object.keys(data.sessions);
-            if(keys.length === 0) {
-                document.getElementById('session-editor-container').innerHTML = '<p>Belum ada sesi. Silakan tambah.</p>';
-                return;
-            }
+    if(!data.sessions[activeSessionKey]) activeSessionKey = keys[0];
 
-            // Jika activeSessionKey terhapus, set ke yang pertama
-            if(!data.sessions[activeSessionKey]) activeSessionKey = keys[0];
-
-            keys.forEach(key => {
-                const btn = document.createElement('button');
-                btn.className = `tab-btn ${key === activeSessionKey ? 'active' : ''}`;
-                btn.innerText = key.toUpperCase();
-                btn.onclick = () => {
-                    activeSessionKey = key;
-                    renderSessionTabs();
-                    renderActiveSession();
-                };
-                tabsContainer.appendChild(btn);
-            });
-        }
-
-        // 5. RENDER ACTIVE SESSION FORM
-        function renderActiveSession() {
-            if(!activeSessionKey || !data.sessions[activeSessionKey]) return;
-            
-            const s = data.sessions[activeSessionKey];
-            const container = document.getElementById('session-editor-container');
-
-            container.innerHTML = `
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Edit: ${activeSessionKey}</h3>
-                        <button class="btn btn-danger" onclick="deleteSession('${activeSessionKey}')">Hapus Sesi</button>
-                    </div>
-
-                    <div class="flex-row">
-                        <div class="form-group flex-1">
-                            <label>Session Title</label>
-                            <input type="text" class="form-control" value="${s.title}" oninput="data.sessions['${activeSessionKey}'].title = this.value; updateOutput();">
-                        </div>
-                        <div class="form-group flex-1">
-                            <label>YouTube Video ID</label>
-                            <input type="text" class="form-control" value="${s.materials.youtubeId}" oninput="data.sessions['${activeSessionKey}'].materials.youtubeId = this.value; updateOutput();" placeholder="Contoh: y1RzB_7qYvE">
-                        </div>
-                    </div>
-
-                    <div class="flex-row">
-                        <div class="form-group flex-1"><label>Category</label><input type="text" class="form-control" value="${s.category}" oninput="data.sessions['${activeSessionKey}'].category = this.value; updateOutput();"></div>
-                        <div class="form-group flex-1"><label>Date</label><input type="text" class="form-control" value="${s.date}" oninput="data.sessions['${activeSessionKey}'].date = this.value; updateOutput();"></div>
-                        <div class="form-group flex-1"><label>Participant</label><input type="text" class="form-control" value="${s.participant}" oninput="data.sessions['${activeSessionKey}'].participant = this.value; updateOutput();"></div>
-                    </div>
-
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #eee; margin-bottom: 15px;">
-                        <h4 style="margin-top:0; margin-bottom: 10px; color:#555;">Speaker Profile</h4>
-                        <div class="flex-row">
-                            <div class="form-group flex-1"><label>Name</label><input type="text" class="form-control" value="${s.speaker.name}" oninput="data.sessions['${activeSessionKey}'].speaker.name = this.value; updateOutput();"></div>
-                            <div class="form-group flex-1"><label>Image URL</label><input type="text" class="form-control" value="${s.speaker.image}" oninput="data.sessions['${activeSessionKey}'].speaker.image = this.value; updateOutput();"></div>
-                        </div>
-                        <div class="form-group"><label>Description</label><textarea class="form-control" oninput="data.sessions['${activeSessionKey}'].speaker.desc = this.value; updateOutput();">${s.speaker.desc}</textarea></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>What You'll Learn (Pisahkan dengan Enter)</label>
-                        <textarea class="form-control" oninput="data.sessions['${activeSessionKey}'].learnings = strToArr(this.value); updateOutput();">${arrToStr(s.learnings)}</textarea>
-                    </div>
-
-                    <div class="flex-row">
-                        <div class="form-group flex-1">
-                            <label>Materials: DURING Session (JSON Editor)</label>
-                            <textarea class="form-control json-field" style="min-height: 150px;" oninput="updateComplexJSON('sessions.${activeSessionKey}.during', this.value, this)">${JSON.stringify(s.materials.during, null, 2)}</textarea>
-                        </div>
-                        <div class="form-group flex-1">
-                            <label>Materials: AFTER Session (JSON Editor)</label>
-                            <textarea class="form-control json-field" style="min-height: 150px;" oninput="updateComplexJSON('sessions.${activeSessionKey}.after', this.value, this)">${JSON.stringify(s.materials.after, null, 2)}</textarea>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // 6. ACTION FUNCTIONS
-        function addNewSession() {
-            const count = Object.keys(data.sessions).length + 1;
-            const newKey = `sesi-${count}`;
-            
-            data.sessions[newKey] = {
-                "title": "Sesi Baru", "category": "Class Session", "date": "TBD", "participant": "All",
-                "speaker": { "name": "", "image": "https://placehold.co/300x300", "desc": "" },
-                "learnings": ["Materi 1"],
-                "materials": {
-                    "youtubeId": "",
-                    "during": [ { "icon": "📊", "title": "Deck Material", "desc": "Deskripsi", "url": "#" } ],
-                    "after": [ { "icon": "✅", "title": "Feedback", "desc": "Form", "url": "#" } ]
-                }
-            };
-            
-            activeSessionKey = newKey;
-            updateOutput();
+    keys.forEach(key => {
+        const btn = document.createElement('button');
+        btn.className = `tab-btn ${key === activeSessionKey ? 'active' : ''}`;
+        btn.innerText = key.toUpperCase();
+        btn.onclick = () => {
+            activeSessionKey = key;
             renderSessionTabs();
             renderActiveSession();
-        }
+        };
+        tabsContainer.appendChild(btn);
+    });
+}
 
-        function deleteSession(key) {
-            if(confirm(`Yakin ingin menghapus ${key}?`)) {
-                delete data.sessions[key];
-                updateOutput();
-                renderSessionTabs();
+function renderActiveSession() {
+    if(!activeSessionKey || !data.sessions[activeSessionKey]) return;
+    
+    const s = data.sessions[activeSessionKey];
+    const container = document.getElementById('session-editor-container');
+
+    container.innerHTML = `
+        <div class="item-card">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 20px;">
+                <h3 style="margin:0;">Edit Data: ${activeSessionKey.toUpperCase()}</h3>
+                <button class="btn btn-danger" onclick="deleteSession('${activeSessionKey}')">X Hapus Sesi Ini</button>
+            </div>
+
+            <div class="flex-row">
+                <div class="form-group flex-1">
+                    <label>Session Title</label>
+                    <input type="text" class="form-control" value="${s.title}" oninput="data.sessions['${activeSessionKey}'].title = this.value; updateOutput();">
+                </div>
+                <div class="form-group flex-1">
+                    <label>YouTube Video ID</label>
+                    <input type="text" class="form-control" value="${s.materials.youtubeId}" oninput="data.sessions['${activeSessionKey}'].materials.youtubeId = this.value; updateOutput();" placeholder="Contoh: y1RzB_7qYvE">
+                </div>
+            </div>
+
+            <div class="flex-row">
+                <div class="form-group flex-1"><label>Category</label><input type="text" class="form-control" value="${s.category}" oninput="data.sessions['${activeSessionKey}'].category = this.value; updateOutput();"></div>
+                <div class="form-group flex-1"><label>Date</label><input type="text" class="form-control" value="${s.date}" oninput="data.sessions['${activeSessionKey}'].date = this.value; updateOutput();"></div>
+                <div class="form-group flex-1"><label>Participant</label><input type="text" class="form-control" value="${s.participant}" oninput="data.sessions['${activeSessionKey}'].participant = this.value; updateOutput();"></div>
+            </div>
+
+            <div style="background: #fdfdfd; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 15px;">
+                <h4 style="margin-top:0; margin-bottom: 15px; color:#555;">🧑‍🏫 Speaker Profile</h4>
+                <div class="flex-row">
+                    <div class="form-group flex-1"><label>Name</label><input type="text" class="form-control" value="${s.speaker.name}" oninput="data.sessions['${activeSessionKey}'].speaker.name = this.value; updateOutput();"></div>
+                    <div class="form-group flex-1">
+                        <label>Image URL</label>
+                        <input type="text" class="form-control" value="${s.speaker.image}" oninput="data.sessions['${activeSessionKey}'].speaker.image = this.value; updateOutput();">
+                    </div>
+                </div>
+
+                <div class="upload-box" id="upload-box-speaker">
+                    <label for="file-speaker">📸 Pilih & Upload Foto Speaker ke GitHub</label>
+                    <input type="file" id="file-speaker" accept="image/*" onchange="uploadImageToGitHub('speaker', this)">
+                    <div id="upload-status-speaker" style="font-size: 12px; color: var(--success); margin-top: 5px; font-weight: bold;"></div>
+                </div>
+
+                ${s.speaker.image ? `
+                <div class="image-preview" style="max-width: 150px; margin-top:10px;">
+                    <img src="${s.speaker.image}" alt="preview" style="border-radius: 50%; height:150px; width:150px; border: 3px solid #eee;">
+                </div>
+                ` : ''}
+
+                <div class="form-group" style="margin-top:10px;"><label>Description</label><textarea class="form-control" oninput="data.sessions['${activeSessionKey}'].speaker.desc = this.value; updateOutput();">${s.speaker.desc}</textarea></div>
+            </div>
+
+            <div class="form-group">
+                <label>What You'll Learn (Pisahkan dengan Enter)</label>
+                <textarea class="form-control" oninput="data.sessions['${activeSessionKey}'].learnings = strToArr(this.value); updateOutput();">${arrToStr(s.learnings)}</textarea>
+            </div>
+
+            <div class="flex-row">
+                <div class="form-group flex-1">
+                    <label>Materials: DURING Session (JSON)</label>
+                    <textarea class="form-control json-field" style="min-height: 150px;" oninput="updateComplexJSON('sessions.${activeSessionKey}.during', this.value, this)">${JSON.stringify(s.materials.during, null, 2)}</textarea>
+                </div>
+                <div class="form-group flex-1">
+                    <label>Materials: AFTER Session (JSON)</label>
+                    <textarea class="form-control json-field" style="min-height: 150px;" oninput="updateComplexJSON('sessions.${activeSessionKey}.after', this.value, this)">${JSON.stringify(s.materials.after, null, 2)}</textarea>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function addNewSession() {
+    const count = Object.keys(data.sessions).length + 1;
+    const newKey = `sesi-${count}`;
+    
+    data.sessions[newKey] = {
+        "title": "Sesi Baru", "category": "Class Session", "date": "TBD", "participant": "All",
+        "speaker": { "name": "", "image": "", "desc": "" },
+        "learnings": ["Materi 1"],
+        "materials": {
+            "youtubeId": "",
+            "during": [ { "icon": "📊", "title": "Deck Material", "desc": "", "url": "#" } ],
+            "after": [ { "icon": "✅", "title": "Feedback", "desc": "", "url": "#" } ]
+        }
+    };
+    
+    activeSessionKey = newKey;
+    renderEditor();
+}
+
+function deleteSession(key) {
+    if(confirm(`Yakin ingin menghapus ${key}?`)) {
+        let img = data.sessions[key].speaker.image;
+        if (img && img.includes('github.io')) {
+            if(confirm('Hapus juga gambar speaker ini dari repository GitHub?')) {
+                let imgFolder = document.getElementById('gh-img-folder').value.trim();
+                if(imgFolder.endsWith('/')) imgFolder = imgFolder.slice(0, -1);
+                deleteOldImageByUrl(img, imgFolder);
+            }
+        }
+        delete data.sessions[key];
+        renderEditor();
+    }
+}
+
+
+/* =======================================================
+   3. GITHUB INTEGRATION & AUTO CLEANUP IMAGES
+   ======================================================= */
+async function deleteOldImageByUrl(imageUrl, imgFolder) {
+    if (!imageUrl || !imageUrl.includes('github.io')) return;
+
+    const token = document.getElementById('gh-token').value.trim();
+    const owner = document.getElementById('gh-owner').value.trim();
+    const repo = document.getElementById('gh-repo').value.trim();
+
+    if (!token || !owner || !repo || !imgFolder) return;
+
+    const fileName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+    if (!fileName) return;
+
+    try {
+        const listUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${imgFolder}`;
+        const listRes = await fetch(listUrl, { headers: { 'Authorization': `token ${token}` }});
+        if (!listRes.ok) return;
+        
+        const files = await listRes.json();
+        const targetFile = files.find(f => f.name === fileName);
+        
+        if (targetFile) {
+            const delUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${targetFile.path}`;
+            await fetch(delUrl, {
+                method: 'DELETE',
+                headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: `🗑️ Auto-delete removed image: ${fileName}`, sha: targetFile.sha })
+            });
+            console.log(`Gambar lama ${fileName} berhasil dihapus!`);
+        }
+    } catch (e) {
+        console.error("Gagal auto-cleanup", e);
+    }
+}
+
+async function uploadImageToGitHub(targetType, inputEl) {
+    const file = inputEl.files[0];
+    if (!file) return;
+
+    const token = document.getElementById('gh-token').value.trim();
+    const owner = document.getElementById('gh-owner').value.trim();
+    const repo = document.getElementById('gh-repo').value.trim();
+    let imgFolder = document.getElementById('gh-img-folder').value.trim();
+
+    if (!token || !owner || !repo) {
+        alert("Harap lengkapi konfigurasi GitHub Token, Username, dan Repo!");
+        inputEl.value = ""; return;
+    }
+    if(imgFolder.endsWith('/')) imgFolder = imgFolder.slice(0, -1);
+
+    const statusEl = document.getElementById(`upload-status-${targetType}`);
+    statusEl.innerHTML = "⏳ Sedang memproses... Harap tunggu.";
+    
+    // Tentukan URL lama & Slug Penamaan
+    let oldUrl = "";
+    let slug = "";
+    
+    if (targetType === 'globalJourney') {
+        oldUrl = data.global.learningJourneyImg;
+        slug = "journey";
+    } else if (targetType === 'speaker') {
+        oldUrl = data.sessions[activeSessionKey].speaker.image;
+        let speakerName = data.sessions[activeSessionKey].speaker.name;
+        slug = speakerName ? speakerName.replace(/[^a-zA-Z0-9-]/g, '').toLowerCase() : 'speaker';
+    }
+
+    // Auto-Delete gambar lama jika berasal dari GitHub
+    if (oldUrl && oldUrl.includes('github.io')) {
+        statusEl.innerHTML = "🗑️ Membersihkan gambar lama dari repository...";
+        await deleteOldImageByUrl(oldUrl, imgFolder);
+    }
+
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+        const base64Data = e.target.result.split(',')[1];
+        const ext = file.name.split('.').pop();
+        
+        const uniqueFileName = `${slug}_${Date.now()}.${ext}`;
+        const fullPath = imgFolder ? `${imgFolder}/${uniqueFileName}` : uniqueFileName;
+
+        statusEl.innerHTML = "🚀 Mengirim gambar baru ke GitHub...";
+
+        try {
+            const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${fullPath}`;
+            const res = await fetch(putUrl, {
+                method: 'PUT',
+                headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: `📸 Upload image: ${uniqueFileName}`, content: base64Data })
+            });
+
+            if (!res.ok) throw new Error("Gagal upload. Cek permission token.");
+            const resData = await res.json();
+            
+            let publicUrl = repo.includes('.github.io') 
+                ? `https://${repo}/${resData.content.path}` 
+                : `https://${owner}.github.io/${repo}/${resData.content.path}`;
+
+            // Terapkan URL Baru ke JSON
+            if (targetType === 'globalJourney') {
+                data.global.learningJourneyImg = publicUrl;
+                renderGlobal();
+            } else if (targetType === 'speaker') {
+                data.sessions[activeSessionKey].speaker.image = publicUrl;
                 renderActiveSession();
             }
+            
+            updateOutput(); 
+            const finalStatus = document.getElementById(`upload-status-${targetType}`);
+            if(finalStatus) finalStatus.innerHTML = "✅ Upload Berhasil!";
+        } catch (err) {
+            statusEl.innerHTML = `❌ Error: ${err.message}`;
+            statusEl.style.color = "red";
         }
+    };
+    reader.readAsDataURL(file);
+}
 
-        function copyJSON() {
-            const outputArea = document.getElementById('json-output');
-            outputArea.select();
-            document.execCommand('copy');
-            alert('JSON berhasil disalin! Silakan paste ke file training.json di GitHub.');
+
+/* =======================================================
+   4. FILE BROWSER & LOAD/SAVE GITHUB
+   ======================================================= */
+function saveConfig() {
+    localStorage.setItem('gh_token', document.getElementById('gh-token').value.trim());
+    localStorage.setItem('gh_owner', document.getElementById('gh-owner').value.trim());
+    localStorage.setItem('gh_repo', document.getElementById('gh-repo').value.trim());
+    localStorage.setItem('gh_path', document.getElementById('gh-path').value.trim());
+    localStorage.setItem('gh_img_folder', document.getElementById('gh-img-folder').value.trim());
+}
+
+function loadConfig() {
+    document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
+    document.getElementById('gh-owner').value = localStorage.getItem('gh_owner') || '';
+    document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || '';
+    document.getElementById('gh-path').value = localStorage.getItem('gh_path') || '';
+    document.getElementById('gh-img-folder').value = localStorage.getItem('gh_img_folder') || '';
+}
+
+async function openFileBrowser(path = '', mode = currentBrowserMode) {
+    const token = document.getElementById('gh-token').value.trim();
+    const owner = document.getElementById('gh-owner').value.trim();
+    const repo = document.getElementById('gh-repo').value.trim();
+
+    if (!token || !owner || !repo) {
+        alert("Harap isi Token PAT, Username, dan Repository terlebih dahulu!");
+        return;
+    }
+
+    currentBrowserMode = mode;
+    currentBrowsePath = path;
+
+    const modalTitle = document.getElementById('modal-title');
+    const btnSelectFolder = document.getElementById('btn-select-folder');
+    
+    if (mode === 'folder') {
+        modalTitle.innerText = "📂 Pilih Folder Gambar";
+        btnSelectFolder.style.display = "block";
+    } else {
+        modalTitle.innerText = "📂 Pilih File JSON";
+        btnSelectFolder.style.display = "none";
+    }
+
+    const modal = document.getElementById('fileBrowserModal');
+    const fileListEl = document.getElementById('file-list');
+    modal.style.display = 'flex';
+    fileListEl.innerHTML = '<div style="padding: 20px; text-align: center;">⏳ Loading folder contents...</div>';
+
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+    try {
+        const response = await fetch(url, { headers: { 'Authorization': `token ${token}` }});
+        if (!response.ok) throw new Error(`Folder tidak ditemukan/Token salah (${response.status})`);
+
+        const listData = await response.json();
+        renderFileList(listData, path);
+    } catch (error) {
+        fileListEl.innerHTML = `<div style="padding: 20px; color: red;">❌ Error: ${error.message}</div>`;
+    }
+}
+
+function renderFileList(items, currentPath) {
+    currentBrowsePath = currentPath;
+    const fileListEl = document.getElementById('file-list');
+    let html = '';
+
+    if (currentPath !== '') {
+        const parentPath = currentPath.split('/').slice(0, -1).join('/');
+        html += `<div class="file-item" onclick="openFileBrowser('${parentPath}', '${currentBrowserMode}')" style="background:#e8f4fd;">🔙 <strong>.. (Kembali)</strong></div>`;
+    }
+
+    items.sort((a, b) => {
+        if (a.type === b.type) return a.name.localeCompare(b.name);
+        return a.type === 'dir' ? -1 : 1;
+    });
+
+    items.forEach(item => {
+        if (item.type === 'dir') {
+            html += `<div class="file-item" onclick="openFileBrowser('${item.path}', '${currentBrowserMode}')">📁 <strong>${item.name}</strong></div>`;
+        } else if (item.name.endsWith('.json') && currentBrowserMode === 'file') {
+            html += `<div class="file-item" onclick="selectFilePath('${item.path}')">📄 <span style="color:var(--primary); font-weight:bold;">${item.name}</span></div>`;
+        } else {
+            html += `<div class="file-item disabled">📄 ${item.name}</div>`;
         }
+    });
 
-        function loadFromOutput() {
-            try {
-                const val = document.getElementById('json-output').value;
-                const parsed = JSON.parse(val);
-                if(parsed.global && parsed.sessions) {
-                    data = parsed;
-                    renderGlobal();
-                    renderSessionTabs();
-                    renderActiveSession();
-                    alert('Data JSON berhasil diload!');
-                } else {
-                    alert('Format JSON salah! Pastikan ada properti "global" dan "sessions".');
-                }
-            } catch(e) {
-                alert('Gagal membaca JSON. Pastikan format penulisan benar.');
-            }
+    fileListEl.innerHTML = html || '<div style="padding: 20px; text-align: center;">Folder kosong</div>';
+}
+
+function selectFilePath(path) { document.getElementById('gh-path').value = path; saveConfig(); closeFileBrowser(); }
+function confirmFolderSelection() { document.getElementById('gh-img-folder').value = currentBrowsePath; saveConfig(); closeFileBrowser(); }
+function closeFileBrowser() { document.getElementById('fileBrowserModal').style.display = 'none'; }
+
+
+async function fetchFromGitHub() {
+    const token = document.getElementById('gh-token').value.trim();
+    const owner = document.getElementById('gh-owner').value.trim();
+    const repo = document.getElementById('gh-repo').value.trim();
+    const path = document.getElementById('gh-path').value.trim();
+
+    if (!token || !owner || !repo || !path) { alert('Harap isi semua konfigurasi GitHub!'); return; }
+
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+    try {
+        const response = await fetch(url, { headers: { 'Authorization': `token ${token}` }});
+        if (!response.ok) throw new Error(`Gagal menarik data (${response.status}). Periksa Token/Path.`);
+
+        const resData = await response.json();
+        currentFileSha = resData.sha; 
+        const decodedContent = decodeURIComponent(escape(atob(resData.content)));
+        const json = JSON.parse(decodedContent);
+
+        if (json.global && json.sessions) {
+            data = json;
+            renderEditor();
+            alert('✅ Data JSON Berhasil ditarik dari GitHub!');
+        } else {
+            alert('❌ Format JSON yang ditarik tidak sesuai dengan sistem Training ini.');
         }
+    } catch (error) {
+        alert(error.message);
+    }
+}
 
-        // Inisialisasi Pertama
-        window.onload = () => {
-            renderGlobal();
-            renderSessionTabs();
-            renderActiveSession();
-            updateOutput();
-        };
-    </script>
+async function saveToGitHub() {
+    const token = document.getElementById('gh-token').value.trim();
+    const owner = document.getElementById('gh-owner').value.trim();
+    const repo = document.getElementById('gh-repo').value.trim();
+    const path = document.getElementById('gh-path').value.trim();
+
+    if (!token || !owner || !repo || !path) { alert('Harap isi semua konfigurasi GitHub!'); return; }
+
+    const stringContent = JSON.stringify(data, null, 2);
+    const encodedContent = btoa(unescape(encodeURIComponent(stringContent)));
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+    if (!currentFileSha) {
+        try {
+            const checkRes = await fetch(url, { headers: { 'Authorization': `token ${token}` } });
+            if (checkRes.ok) currentFileSha = (await checkRes.json()).sha;
+        } catch (e) {}
+    }
+
+    const bodyData = { message: "⚡ Update Training JSON via Generator", content: encodedContent };
+    if (currentFileSha) bodyData.sha = currentFileSha;
+
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify(bodyData)
+        });
+
+        if (!response.ok) throw new Error(`Gagal menyimpan file JSON ke repositori.`);
+
+        currentFileSha = (await response.json()).content.sha; 
+        alert('🎉 Berhasil! File JSON sudah tersimpan dan live di GitHub!');
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+function loadFromOutput() {
+    try{
+        const val = document.getElementById('json-output').value;
+        const parsed = JSON.parse(val);
+        if(parsed.global && parsed.sessions){ data = parsed; renderEditor(); alert('Berhasil di-load!'); }
+        else alert('Format JSON salah. Harus ada "global" & "sessions".');
+    }catch(e){ alert('JSON error. Cek sintaks.'); }
+}
+
+function copyJSON(){
+    const el = document.getElementById('json-output');
+    el.select(); document.execCommand('copy'); alert('Copied!');
+}
+
+/* INIT */
+window.onload = function() {
+    loadConfig();
+    renderEditor();
+};
+
+</script>
 </body>
 </html>
