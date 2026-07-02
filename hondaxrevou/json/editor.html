@@ -1,1 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training JSON Generator - RevoU x HPM</title>
+    <style>
+        :root {
+            --primary: #cc0000; 
+            --primary-hover: #a30000;
+            --bg: #f4f6f9;
+            --card: #ffffff;
+            --border: #ddd;
+            --text: #333;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        * { box-sizing: border-box; font-family: var(--font); }
+        body { margin: 0; padding: 0; background-color: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
+        
+        /* HEADER */
+        .header { background: #111; color: #fff; padding: 15px 20px; font-size: 18px; font-weight: bold; position: fixed; top: 0; width: 100%; z-index: 10; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+        
+        /* LAYOUT CONTAINER */
+        .container { display: flex; width: 100%; margin-top: 55px; height: calc(100vh - 55px); }
+        .editor-panel { flex: 6; padding: 20px; overflow-y: auto; background: var(--bg); border-right: 2px solid var(--border); }
+        .output-panel { flex: 4; padding: 20px; display: flex; flex-direction: column; background: #fff; }
+        
+        /* CARDS & FORMS */
+        .section-title { font-size: 1.4rem; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-bottom: 20px; margin-top: 10px;}
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .card-header h3 { margin: 0; color: #111; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 13px; color: #555; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; font-family: var(--font);}
+        .form-control:focus { border-color: var(--primary); outline: none; }
+        textarea.form-control { resize: vertical; min-height: 80px; }
+        textarea.json-field { font-family: 'Courier New', Courier, monospace; background: #fdfdfd; border-left: 3px solid #ffc107;}
+        textarea.json-field.error { border-left: 3px solid red; background: #fff5f5; }
 
+        .flex-row { display: flex; gap: 15px; }
+        .flex-1 { flex: 1; }
+        
+        .help-text { font-size: 11px; color: #888; margin-top: 4px; display: block; }
+
+        /* BUTTONS */
+        .btn { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.2s; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-secondary { background: #555; color: white; }
+        .btn-secondary:hover { background: #333; }
+        .btn-danger { background: #dc3545; color: white; padding: 6px 12px; font-size: 12px; }
+        .btn-danger:hover { background: #c82333; }
+        .btn-block { width: 100%; padding: 12px; font-size: 14px; margin-top: 10px; }
+
+        /* OUTPUT PANEL */
+        #json-output { width: 100%; flex: 1; padding: 15px; font-family: 'Courier New', Courier, monospace; font-size: 13px; background: #1e1e1e; color: #d4d4d4; border-radius: 6px; border: none; resize: none; margin-top: 10px; margin-bottom: 15px;}
+        
+        /* TABS for Sessions */
+        .session-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;}
+        .tab-btn { padding: 8px 15px; background: #e9ecef; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 13px;}
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary-hover); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>📝 Training JSON Generator</div>
+        <div style="font-size: 13px; font-weight: normal;">Created for Argust</div>
+    </div>
+
+    <div class="container">
+        <div class="editor-panel">
+            
+            <div class="section-title">🌍 Global Settings</div>
+            <div class="card" id="global-container">
+                </div>
+
+            <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>📚 Class Sessions</span>
+                <button class="btn btn-primary" onclick="addNewSession()">+ Tambah Sesi</button>
+            </div>
+            
+            <div class="session-tabs" id="session-tabs">
+                </div>
+
+            <div id="session-editor-container">
+                </div>
+
+        </div>
+
+        <div class="output-panel">
+            <h3 style="margin-top: 0; margin-bottom: 5px;">Output JSON</h3>
+            <p style="font-size: 12px; color: #666; margin-top: 0;">Kamu bisa paste JSON lama kamu di sini, lalu klik Load untuk mengedit.</p>
+            <textarea id="json-output"></textarea>
+            <div class="flex-row">
+                <button class="btn btn-primary flex-1" onclick="copyJSON()">📋 Copy JSON</button>
+                <button class="btn btn-secondary flex-1" onclick="loadFromOutput()">🔄 Load Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. DATA DEFAULT AWAL
+        let data = {
+          "global": {
+            "pageTitle": "RevoU X HPM: Digital Dealer Training | Perform",
+            "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan RevoU.",
+            "learningJourneyImg": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjC5vQQUxf-6eA2Ka7uaLWAo85m32iwWpUX06oPr4SQoa2xNyejEYbE-EBlMHwAysRmJ0bGi5XwUuzpJSK96RZrFjy_bXdPvO6jHhYwFamr0nRNjpSlqyM8kchTv2pJRqBHqwLgDTg5pSO2ULjwASQ4dK0GX5o5YOzqStS4g_HqqX_5N3Vp3TPcZxYl3t7B/s1600/crv.webp",
+            "objectives": [
+              "Workflow konten Honda yang lebih terstruktur",
+              "Konten selaras dengan brand identity Honda",
+              "Konsistensi publikasi dan engagement meningkat",
+              "Rencana aksi dan KPI yang terukur"
+            ],
+            "groundRules": [
+              "Datang tepat waktu 🤫",
+              "Berpartisipasi dan ajukan pertanyaan selama pembelajaran 🙋",
+              "Biasakan dirimu dengan semua alat kelas dan hubungi Class Manager di grup WhatsApp jika menghadapi kesulitan teknis 👩‍💻",
+              "Berikan masukan agar kami dapat melakukan perbaikan 💯"
+            ],
+            "contactInfo": "Jika masih memiliki pertanyaan, dapat menghubungi Tim RevoU melalui Grup WhatsApp.",
+            "importantBlocks": [
+              { "type": "heading", "text": "1️⃣ Attendance & Feedback Form 👇" },
+              { "type": "heading-sub", "text": "RevoU Attendance & Feedback Form" },
+              { "type": "card", "title": "Feedback-CT", "urlText": "https://feedback-ct.paperform.co/...", "url": "https://feedback-ct.paperform.co/" },
+              { "type": "heading", "text": "2️⃣ Pre-test Assessment (Foundation) 👇" },
+              { "type": "card", "title": "Pre-Test: Perform", "urlText": "https://forms.gle/oJLNFyTRxMQ1ix1z9", "url": "https://forms.gle/oJLNFyTRxMQ1ix1z9" },
+              { "type": "list", "items": [ "Mohon lengkapi pre-test untuk membantu kami memahami tingkat kemampuanmu saat ini.", "<b>Deadline: Rabu, 17 Juni 2026 pukul 09.00 WIB</b> (sebelum sesi 1 dimulai)" ] }
+            ]
+          },
+          "sessions": {
+            "sesi-1": {
+              "title": "Sesi #1 - Evaluasi Channel: Seberapa Efektif yang Sudah Berjalan?",
+              "category": "Class Session",
+              "date": "June 17, 2026",
+              "participant": "All",
+              "speaker": {
+                "name": "Adinda Nindyachandra",
+                "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+                "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+              },
+              "learnings": [
+                "Framework evaluasi channel: platform mana yang menghasilkan leads nyata vs sekadar vanity metrics",
+                "Funnel performance review: di tahap mana calon pembeli Honda berhenti sebelum menghubungi dealer?",
+                "Optimasi peran platform: Instagram sebagai engine utama awareness dan engagement lokal"
+              ],
+              "materials": {
+                "youtubeId": "y1RzB_7qYvE",
+                "during": [
+                  { "icon": "📊", "title": "Check the Deck Materials here", "desc": "Sesi 1 HPM (Perform) - Slide presentasi materi evaluasi channel", "url": "#" },
+                  { "icon": "📝", "title": "Please submit exercise form", "desc": "Form Latihan Sesi 1", "url": "#" }
+                ],
+                "after": [
+                  { "icon": "✅", "title": "Submit attendance and feedback", "desc": "Feedback-CT", "url": "#" }
+                ]
+              }
+            }
+          }
+        };
+
+        let activeSessionKey = "sesi-1";
+
+        // 2. HELPER FUNCTIONS
+        function arrToStr(arr) { return arr ? arr.join('\n') : ''; }
+        function strToArr(str) { return str.split('\n').map(s => s.trim()).filter(s => s !== ''); }
+
+        function updateOutput() {
+            document.getElementById('json-output').value = JSON.stringify(data, null, 2);
+        }
+
+        // Fungsi khusus update untuk field JSON Editor (Pencegah Error)
+        function updateComplexJSON(path, value, textareaElement) {
+            try {
+                let parsed = JSON.parse(value);
+                textareaElement.classList.remove('error');
+                
+                // Set data berdasarkan path
+                let parts = path.split('.');
+                if(parts[0] === 'global') {
+                    data.global[parts[1]] = parsed;
+                } else if(parts[0] === 'sessions') {
+                    data.sessions[parts[1]].materials[parts[2]] = parsed;
+                }
+                updateOutput();
+            } catch (e) {
+                textareaElement.classList.add('error');
+            }
+        }
+
+        // 3. RENDER GLOBAL SETTINGS
+        function renderGlobal() {
+            const g = data.global;
+            const container = document.getElementById('global-container');
+            
+            container.innerHTML = `
+                <div class="flex-row">
+                    <div class="form-group flex-1">
+                        <label>Page Title</label>
+                        <input type="text" class="form-control" value="${g.pageTitle}" oninput="data.global.pageTitle = this.value; updateOutput();">
+                    </div>
+                    <div class="form-group flex-1">
+                        <label>Contact Info (WhatsApp text)</label>
+                        <input type="text" class="form-control" value="${g.contactInfo}" oninput="data.global.contactInfo = this.value; updateOutput();">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Welcome Text</label>
+                    <textarea class="form-control" style="min-height:60px;" oninput="data.global.welcomeText = this.value; updateOutput();">${g.welcomeText}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Learning Journey Image URL</label>
+                    <input type="text" class="form-control" value="${g.learningJourneyImg}" oninput="data.global.learningJourneyImg = this.value; updateOutput();">
+                </div>
+
+                <div class="flex-row">
+                    <div class="form-group flex-1">
+                        <label>Objectives (Pisahkan dengan Enter)</label>
+                        <textarea class="form-control" oninput="data.global.objectives = strToArr(this.value); updateOutput();">${arrToStr(g.objectives)}</textarea>
+                    </div>
+                    <div class="form-group flex-1">
+                        <label>Ground Rules (Pisahkan dengan Enter)</label>
+                        <textarea class="form-control" oninput="data.global.groundRules = strToArr(this.value); updateOutput();">${arrToStr(g.groundRules)}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Important Blocks (Editor JSON)</label>
+                    <span class="help-text">Edit langsung format JSON-nya. Pastikan tidak ada koma tertinggal atau tanda kutip yang hilang.</span>
+                    <textarea class="form-control json-field" style="min-height: 200px;" oninput="updateComplexJSON('global.importantBlocks', this.value, this)">${JSON.stringify(g.importantBlocks, null, 2)}</textarea>
+                </div>
+            `;
+        }
+
+        // 4. RENDER SESSION TABS
+        function renderSessionTabs() {
+            const tabsContainer = document.getElementById('session-tabs');
+            tabsContainer.innerHTML = '';
+            
+            const keys = Object.keys(data.sessions);
+            if(keys.length === 0) {
+                document.getElementById('session-editor-container').innerHTML = '<p>Belum ada sesi. Silakan tambah.</p>';
+                return;
+            }
+
+            // Jika activeSessionKey terhapus, set ke yang pertama
+            if(!data.sessions[activeSessionKey]) activeSessionKey = keys[0];
+
+            keys.forEach(key => {
+                const btn = document.createElement('button');
+                btn.className = `tab-btn ${key === activeSessionKey ? 'active' : ''}`;
+                btn.innerText = key.toUpperCase();
+                btn.onclick = () => {
+                    activeSessionKey = key;
+                    renderSessionTabs();
+                    renderActiveSession();
+                };
+                tabsContainer.appendChild(btn);
+            });
+        }
+
+        // 5. RENDER ACTIVE SESSION FORM
+        function renderActiveSession() {
+            if(!activeSessionKey || !data.sessions[activeSessionKey]) return;
+            
+            const s = data.sessions[activeSessionKey];
+            const container = document.getElementById('session-editor-container');
+
+            container.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Edit: ${activeSessionKey}</h3>
+                        <button class="btn btn-danger" onclick="deleteSession('${activeSessionKey}')">Hapus Sesi</button>
+                    </div>
+
+                    <div class="flex-row">
+                        <div class="form-group flex-1">
+                            <label>Session Title</label>
+                            <input type="text" class="form-control" value="${s.title}" oninput="data.sessions['${activeSessionKey}'].title = this.value; updateOutput();">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label>YouTube Video ID</label>
+                            <input type="text" class="form-control" value="${s.materials.youtubeId}" oninput="data.sessions['${activeSessionKey}'].materials.youtubeId = this.value; updateOutput();" placeholder="Contoh: y1RzB_7qYvE">
+                        </div>
+                    </div>
+
+                    <div class="flex-row">
+                        <div class="form-group flex-1"><label>Category</label><input type="text" class="form-control" value="${s.category}" oninput="data.sessions['${activeSessionKey}'].category = this.value; updateOutput();"></div>
+                        <div class="form-group flex-1"><label>Date</label><input type="text" class="form-control" value="${s.date}" oninput="data.sessions['${activeSessionKey}'].date = this.value; updateOutput();"></div>
+                        <div class="form-group flex-1"><label>Participant</label><input type="text" class="form-control" value="${s.participant}" oninput="data.sessions['${activeSessionKey}'].participant = this.value; updateOutput();"></div>
+                    </div>
+
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #eee; margin-bottom: 15px;">
+                        <h4 style="margin-top:0; margin-bottom: 10px; color:#555;">Speaker Profile</h4>
+                        <div class="flex-row">
+                            <div class="form-group flex-1"><label>Name</label><input type="text" class="form-control" value="${s.speaker.name}" oninput="data.sessions['${activeSessionKey}'].speaker.name = this.value; updateOutput();"></div>
+                            <div class="form-group flex-1"><label>Image URL</label><input type="text" class="form-control" value="${s.speaker.image}" oninput="data.sessions['${activeSessionKey}'].speaker.image = this.value; updateOutput();"></div>
+                        </div>
+                        <div class="form-group"><label>Description</label><textarea class="form-control" oninput="data.sessions['${activeSessionKey}'].speaker.desc = this.value; updateOutput();">${s.speaker.desc}</textarea></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What You'll Learn (Pisahkan dengan Enter)</label>
+                        <textarea class="form-control" oninput="data.sessions['${activeSessionKey}'].learnings = strToArr(this.value); updateOutput();">${arrToStr(s.learnings)}</textarea>
+                    </div>
+
+                    <div class="flex-row">
+                        <div class="form-group flex-1">
+                            <label>Materials: DURING Session (JSON Editor)</label>
+                            <textarea class="form-control json-field" style="min-height: 150px;" oninput="updateComplexJSON('sessions.${activeSessionKey}.during', this.value, this)">${JSON.stringify(s.materials.during, null, 2)}</textarea>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label>Materials: AFTER Session (JSON Editor)</label>
+                            <textarea class="form-control json-field" style="min-height: 150px;" oninput="updateComplexJSON('sessions.${activeSessionKey}.after', this.value, this)">${JSON.stringify(s.materials.after, null, 2)}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 6. ACTION FUNCTIONS
+        function addNewSession() {
+            const count = Object.keys(data.sessions).length + 1;
+            const newKey = `sesi-${count}`;
+            
+            data.sessions[newKey] = {
+                "title": "Sesi Baru", "category": "Class Session", "date": "TBD", "participant": "All",
+                "speaker": { "name": "", "image": "https://placehold.co/300x300", "desc": "" },
+                "learnings": ["Materi 1"],
+                "materials": {
+                    "youtubeId": "",
+                    "during": [ { "icon": "📊", "title": "Deck Material", "desc": "Deskripsi", "url": "#" } ],
+                    "after": [ { "icon": "✅", "title": "Feedback", "desc": "Form", "url": "#" } ]
+                }
+            };
+            
+            activeSessionKey = newKey;
+            updateOutput();
+            renderSessionTabs();
+            renderActiveSession();
+        }
+
+        function deleteSession(key) {
+            if(confirm(`Yakin ingin menghapus ${key}?`)) {
+                delete data.sessions[key];
+                updateOutput();
+                renderSessionTabs();
+                renderActiveSession();
+            }
+        }
+
+        function copyJSON() {
+            const outputArea = document.getElementById('json-output');
+            outputArea.select();
+            document.execCommand('copy');
+            alert('JSON berhasil disalin! Silakan paste ke file training.json di GitHub.');
+        }
+
+        function loadFromOutput() {
+            try {
+                const val = document.getElementById('json-output').value;
+                const parsed = JSON.parse(val);
+                if(parsed.global && parsed.sessions) {
+                    data = parsed;
+                    renderGlobal();
+                    renderSessionTabs();
+                    renderActiveSession();
+                    alert('Data JSON berhasil diload!');
+                } else {
+                    alert('Format JSON salah! Pastikan ada properti "global" dan "sessions".');
+                }
+            } catch(e) {
+                alert('Gagal membaca JSON. Pastikan format penulisan benar.');
+            }
+        }
+
+        // Inisialisasi Pertama
+        window.onload = () => {
+            renderGlobal();
+            renderSessionTabs();
+            renderActiveSession();
+            updateOutput();
+        };
+    </script>
+</body>
+</html>
