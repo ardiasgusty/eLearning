@@ -171,6 +171,45 @@
           }
         ]
       }
+    },
+    "sesi-4": {
+      "title": "Sesi #4 - Brand Alignment Review: Selaraskan Konten dengan Suara Brand Honda",
+      "category": "Class Session",
+      "date": "June 20, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Materi 1"
+      ],
+      "materials": {
+        "youtubeId": "u7aBTNi2xBM, fmX-Od8SSzQ",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Deck Material",
+            "desc": "Sesi 4 - Brand Alignment Review: Selaraskan Konten dengan Suara Brand Honda",
+            "url": "#"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 4",
+            "url": "https://docs.google.com/document/d/1tFv59rnXGETL416dUtPoIDekQsDROhYp/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
     }
   }
 }
