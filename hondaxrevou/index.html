@@ -134,6 +134,12 @@
         .speaker-box { display: flex; gap: 24px; align-items: center; }
         .speaker-box img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--border-color); }
 
+        /* TABS VIDEO */
+        .video-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .vid-tab-btn { padding: 8px 16px; background-color: var(--bg-callout); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: var(--text-main); transition: 0.2s; }
+        .vid-tab-btn:hover { background-color: var(--btn-hover); }
+        .vid-tab-btn.active { background-color: var(--red-brand); color: white; border-color: var(--red-brand); }
+
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);}
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
@@ -234,8 +240,9 @@
                 </div>
             </div>
 
-            <div class="content-box">
+            <div class="content-box" id="section-video" style="display:none;">
                 <h3>Sesi Rekaman / Pre-Lecture</h3>
+                <div class="video-tabs" id="det-video-tabs"></div>
                 <div class="video-wrapper">
                     <iframe id="det-video" src="" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -400,8 +407,51 @@
                 document.getElementById('det-speaker-img').src = s.speaker.image || "https://placehold.co/300x300";
             }
 
+            // === LOGIKA MULTIPLE VIDEO TABS ===
+            const sectionVideo = document.getElementById('section-video');
+            const videoTabs = document.getElementById('det-video-tabs');
+            const videoIframe = document.getElementById('det-video');
+            
+            videoTabs.innerHTML = '';
+            videoIframe.src = '';
+            
+            let videos = [];
+            // Deteksi jika user memasukkan beberapa ID dipisah koma
             if(s.materials && s.materials.youtubeId) {
-                document.getElementById('det-video').src = `https://www.youtube.com/embed/${s.materials.youtubeId}?rel=0`;
+                videos = s.materials.youtubeId.split(',').map(v => v.trim()).filter(v => v !== '');
+            }
+
+            if(videos.length > 0) {
+                sectionVideo.style.display = "block";
+                
+                // Kalau ada lebih dari 1 video, buat tab
+                if(videos.length > 1) {
+                    videoTabs.style.display = "flex";
+                    videos.forEach((vidId, idx) => {
+                        const btn = document.createElement('button');
+                        btn.className = `vid-tab-btn ${idx === 0 ? 'active' : ''}`;
+                        btn.innerText = `Bagian ${idx + 1}`;
+                        
+                        btn.onclick = () => {
+                            // Hapus class active dari semua tombol
+                            document.querySelectorAll('.vid-tab-btn').forEach(b => b.classList.remove('active'));
+                            // Tambahkan ke tombol yang diklik
+                            btn.classList.add('active');
+                            // Ganti sumber iframe
+                            videoIframe.src = `https://www.youtube.com/embed/${vidId}?rel=0`;
+                        };
+                        videoTabs.appendChild(btn);
+                    });
+                } else {
+                    // Kalau cuma 1 video, sembunyikan baris tab
+                    videoTabs.style.display = "none";
+                }
+                
+                // Load video pertama secara otomatis
+                videoIframe.src = `https://www.youtube.com/embed/${videos[0]}?rel=0`;
+            } else {
+                // Sembunyikan seluruh section jika tidak ada video
+                sectionVideo.style.display = "none";
             }
 
             // Render During Session Dinamis
