@@ -78,7 +78,7 @@
           {
             "icon": "📝",
             "title": "Exercise",
-            "desc": "Form Latihan Sesi 1",
+            "desc": "Latihan Sesi 1",
             "url": "https://docs.google.com/document/d/17si9jBhNHVXSk5X2OrsksdFAe0Xqs6ad/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
           }
         ],
@@ -98,9 +98,9 @@
       "date": "June 18, 2026",
       "participant": "All",
       "speaker": {
-        "name": "Budi Santoso",
-        "image": "https://placehold.co/300x300/3399ff/fff?text=Budi",
-        "desc": "Ahli dalam menganalisis Customer Journey Mapping untuk industri otomotif."
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
       },
       "learnings": [
         "Memahami tahapan pembeli dari Awareness hingga Decision",
@@ -108,13 +108,19 @@
         "Strategi Call-to-Action (CTA) yang efektif"
       ],
       "materials": {
-        "youtubeId": "dQw4w9WgXcQ",
+        "youtubeId": "lctfBvUNzzU, eoj5HxI4UEY",
         "during": [
           {
             "icon": "📊",
-            "title": "Check the Deck Materials here",
-            "desc": "Sesi 2 HPM (Journey) - Slide materi",
-            "url": "#"
+            "title": "Materials",
+            "desc": "Sesi 2 - Optimasi Journey",
+            "url": "https://drive.google.com/file/d/1X74Vw01VJBpYc12wHIsG7qThj2AaaBul/view?usp=drive_link"
+          },
+          {
+            "icon": "🔗📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 2",
+            "url": "https://docs.google.com/document/d/1P5i2cgs0T9kH2eqd4E8VLLzRnO5GLhNt/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
           }
         ],
         "after": [
