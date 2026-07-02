@@ -294,6 +294,45 @@
           }
         ]
       }
+    },
+    "sesi-7": {
+      "title": "Sesi #7 - Governance Digital: Sistem Yang Melindungi Reputasi Dealer",
+      "category": "Class Session",
+      "date": "June 23, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Materi 1"
+      ],
+      "materials": {
+        "youtubeId": "",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 7 - Governance Digital: Sistem Yang Melindungi Reputasi Dealer",
+            "url": "https://drive.google.com/file/d/1ZNPwbWCL2Z-sZHFo7he7wuysGODToKLI/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 7",
+            "url": "https://docs.google.com/document/d/1wd93MZgT_Zw4imOpOY9Ik3XcFMh-F80O/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
     }
   }
 }
