@@ -175,7 +175,7 @@
     "sesi-4": {
       "title": "Sesi #4 - Brand Alignment Review: Selaraskan Konten dengan Suara Brand Honda",
       "category": "Class Session",
-      "date": "June 20, 2026",
+      "date": "June 22, 2026",
       "participant": "All",
       "speaker": {
         "name": "Adinda Nindyachandra",
@@ -214,7 +214,7 @@
     "sesi-5": {
       "title": "Sesi #5 - Kalender Konten Berbasis KPI & Instagram Boost Strategy",
       "category": "Class Session",
-      "date": "June 21, 2026",
+      "date": "June 23, 2026",
       "participant": "All",
       "speaker": {
         "name": "Adinda Nindyachandra",
@@ -259,7 +259,7 @@
     "sesi-6": {
       "title": "Sesi #6 - Sales-Driven Content: Konten Bukan Yang Sekadar Dilihat - Namun Menghasilkan",
       "category": "Class Session",
-      "date": "June 22, 2026",
+      "date": "June 24, 2026",
       "participant": "All",
       "speaker": {
         "name": "Adinda Nindyachandra",
@@ -298,7 +298,7 @@
     "sesi-7": {
       "title": "Sesi #7 - Governance Digital: Sistem Yang Melindungi Reputasi Dealer",
       "category": "Class Session",
-      "date": "June 23, 2026",
+      "date": "June 25, 2026",
       "participant": "All",
       "speaker": {
         "name": "Adinda Nindyachandra",
@@ -309,7 +309,7 @@
         "Materi 1"
       ],
       "materials": {
-        "youtubeId": "",
+        "youtubeId": "3JZkHFODHR4, Ndcn5n8Xm9o",
         "during": [
           {
             "icon": "📊",
@@ -322,6 +322,84 @@
             "title": "Exercise",
             "desc": "Latihan Sesi 7",
             "url": "https://docs.google.com/document/d/1wd93MZgT_Zw4imOpOY9Ik3XcFMh-F80O/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-8": {
+      "title": "Sesi #8 - Advanced Response Handling: Mini Showcase + Positive Engagement & Reputation Defense",
+      "category": "Class Session",
+      "date": "June 26, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Materi 1"
+      ],
+      "materials": {
+        "youtubeId": "Is5b6lSFdSg, HG40vMjfoR0",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Deck Material",
+            "desc": "Sesi 8 - Advanced Response Handling: Mini Showcase + Positive Engagement & Reputation Defense",
+            "url": "https://drive.google.com/file/d/1GDasxgdXJP229_Qi4-aELTFxU7FkeKC0/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Link Baru",
+            "desc": "Latihan Sesi 8",
+            "url": "https://docs.google.com/document/d/1krU6rLmXKYy2aa-ckb1tGWoX0B6GySQ1/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-9": {
+      "title": "Sesi #9 - KPI Review & 30-Day Action Plan",
+      "category": "Class Session",
+      "date": "June 29, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Materi 1"
+      ],
+      "materials": {
+        "youtubeId": "7pNhK-spMHo, IqjXkZJwUC8",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 9 - KPI Review & 30-Day Action Plan",
+            "url": "https://drive.google.com/file/d/17LTpH12aYG3fLaUcDgkx-YdMMlGC09r1/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 9",
+            "url": "https://docs.google.com/spreadsheets/d/1yEEyOAyZfsdLsz9F35jheSF_mrfjn0T1/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
           }
         ],
         "after": [
