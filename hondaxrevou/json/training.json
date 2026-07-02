@@ -234,16 +234,55 @@
             "url": "https://drive.google.com/file/d/1TDgHgWlAkiTFOmkjFH7F_cjYYZayyG77/view?usp=drive_link"
           },
           {
-            "icon": "🔗",
+            "icon": "📝",
             "title": "Exercise",
             "desc": "Latihan Sesi 5",
             "url": "https://docs.google.com/spreadsheets/d/1urRGcZVMT756wiKos-tpSxiFeEO3fGyP/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
           },
           {
-            "icon": "🔗",
+            "icon": "📝",
             "title": "Exercise Group",
             "desc": "Latihan Group Sesi 5",
             "url": "https://docs.google.com/spreadsheets/d/164i2rrBTEXTZJGqqEDjaL1kmLrvJ_oXWCNgiFRQPG64/edit?usp=sharing"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-6": {
+      "title": "Sesi #6 - Sales-Driven Content: Konten Bukan Yang Sekadar Dilihat - Namun Menghasilkan",
+      "category": "Class Session",
+      "date": "June 22, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Materi 1"
+      ],
+      "materials": {
+        "youtubeId": "eGR_HrPdZDU, 6vsnR190dY4",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 6 - Sales-Driven Content: Konten Bukan Yang Sekadar Dilihat - Namun Menghasilkan",
+            "url": "https://drive.google.com/file/d/1WZQEoski0eyVkuVNMgnQXPESN7laNuac/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 6",
+            "url": "https://docs.google.com/document/d/1cTvpeFebKKn_ZmDsoIwPj_nTG0gWlb-E/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
           }
         ],
         "after": [
