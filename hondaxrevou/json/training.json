@@ -93,7 +93,7 @@
       }
     },
     "sesi-2": {
-      "title": "Sesi #2 - Optimasi Journey: Selaraskan Konten Dengan Perilaku Pembeli",
+      "title": "Sesi #2 - Optimasi Journey: Menyelaraskan Konten dengan Perilaku Pembeli",
       "category": "Class Session",
       "date": "June 18, 2026",
       "participant": "All",
@@ -117,10 +117,10 @@
             "url": "https://drive.google.com/file/d/1X74Vw01VJBpYc12wHIsG7qThj2AaaBul/view?usp=drive_link"
           },
           {
-            "icon": "🔗📝",
+            "icon": "📝",
             "title": "Exercise",
             "desc": "Latihan Sesi 2",
-            "url": "https://docs.google.com/document/d/1P5i2cgs0T9kH2eqd4E8VLLzRnO5GLhNt/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+            "url": "https://drive.google.com/file/d/1X74Vw01VJBpYc12wHIsG7qThj2AaaBul/view?usp=drive_link"
           }
         ],
         "after": [
@@ -128,6 +128,45 @@
             "icon": "✅",
             "title": "Submit attendance and feedback",
             "desc": "Feedback-CT",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-3": {
+      "title": "Sesi #3 - AI untuk Workflow: Structured AI Prompting & Efisiensi Workflow Produksi Konten",
+      "category": "Class Session",
+      "date": "June 19, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Materi 1"
+      ],
+      "materials": {
+        "youtubeId": "Vdeitu90Nlw, pQ8pnf8DIjY",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 3 - AI untuk Workflow: Structured AI Prompting & Efisiensi Workflow Produksi Konten",
+            "url": "https://drive.google.com/file/d/1Jri1duVSrUxJ4qT83JPqv6N5B7y6M9Nv/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 3",
+            "url": "https://docs.google.com/document/d/1We93YPpPFGXulQsEECL83IawSbOW3m8G/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
             "url": "#"
           }
         ]
