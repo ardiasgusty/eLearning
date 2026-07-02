@@ -190,15 +190,60 @@
         "during": [
           {
             "icon": "📊",
-            "title": "Deck Material",
+            "title": "Material",
             "desc": "Sesi 4 - Brand Alignment Review: Selaraskan Konten dengan Suara Brand Honda",
-            "url": "#"
+            "url": "https://drive.google.com/file/d/18ZLcvyUrgkwQoiWM2pHyn8dq6BJGoXTm/view?usp=drive_link"
           },
           {
             "icon": "📝",
             "title": "Exercise",
             "desc": "Latihan Sesi 4",
             "url": "https://docs.google.com/document/d/1tFv59rnXGETL416dUtPoIDekQsDROhYp/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-5": {
+      "title": "Sesi #5 - Kalender Konten Berbasis KPI & Instagram Boost Strategy",
+      "category": "Class Session",
+      "date": "June 21, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Materi 1"
+      ],
+      "materials": {
+        "youtubeId": "Q8A2AvBmul8, ej_phWKObjA",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 5 - Kalender Konten Berbasis KPI & Instagram Boost Strategy",
+            "url": "https://drive.google.com/file/d/1TDgHgWlAkiTFOmkjFH7F_cjYYZayyG77/view?usp=drive_link"
+          },
+          {
+            "icon": "🔗",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 5",
+            "url": "https://docs.google.com/spreadsheets/d/1urRGcZVMT756wiKos-tpSxiFeEO3fGyP/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          },
+          {
+            "icon": "🔗",
+            "title": "Exercise Group",
+            "desc": "Latihan Group Sesi 5",
+            "url": "https://docs.google.com/spreadsheets/d/164i2rrBTEXTZJGqqEDjaL1kmLrvJ_oXWCNgiFRQPG64/edit?usp=sharing"
           }
         ],
         "after": [
