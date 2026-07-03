@@ -6,6 +6,11 @@
     <title>Honda Bintaro | E-Learning Center</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* === EFEK SMOOTH SCROLL === */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* === TEMA LIGHT MODE (Default) === */
         :root {
             --bg-main: #f8f9fa;
@@ -43,15 +48,20 @@
 
         /* NAVBAR */
         nav { position: fixed; top: 0; width: 100%; background: var(--bg-nav); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid var(--border-color); padding: 15px 0; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: center; align-items: center; }
         .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;}
         .logo span { color: var(--primary); }
-        .theme-toggle { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; box-shadow: var(--shadow-sm); transition: 0.2s; }
+
+        /* FLOATING BUTTONS */
+        .theme-toggle { position: fixed; bottom: 30px; right: 90px; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.3rem; box-shadow: var(--shadow-lg); transition: 0.2s; z-index: 100; }
         .theme-toggle:hover { transform: scale(1.1); }
+
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; font-weight: bold; box-shadow: var(--shadow-lg); transition: 0.3s; z-index: 100; opacity: 0; visibility: hidden; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-hover); transform: translateY(-3px); }
 
         /* HERO SECTION */
         .hero { padding: 160px 20px 100px; background: var(--hero-gradient); color: white; text-align: center; position: relative; overflow: hidden; }
-        /* Aksen Lingkaran Merah di Background Hero */
         .hero::before { content: ''; position: absolute; top: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(204,0,0,0.4) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; }
         .hero::after { content: ''; position: absolute; bottom: -150px; right: -50px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(204,0,0,0.3) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; }
         
@@ -99,6 +109,8 @@
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1rem; }
             .hero { padding: 130px 20px 80px; }
+            .theme-toggle { right: 80px; }
+            .back-to-top { right: 20px; }
         }
     </style>
 </head>
@@ -115,9 +127,12 @@
                 </svg>
                 Honda Bintaro <span>E-Learning</span>
             </div>
-            <button id="theme-btn" class="theme-toggle" title="Toggle Mode">🌙</button>
         </div>
     </nav>
+
+    <!-- FLOATING BUTTONS -->
+    <button id="theme-btn" class="theme-toggle" title="Toggle Dark/Light Mode">🌙</button>
+    <button id="back-to-top" class="back-to-top" title="Kembali ke Atas">↑</button>
 
     <!-- HERO SECTION -->
     <header class="hero">
@@ -138,12 +153,45 @@
 
         <div class="grid-programs">
             
-            <!-- KARTU 1: REVOU X HPM (Link ke file training yang kita buat) -->
+            <!-- KARTU 1: PURWADHIKA S1 -->
+            <a href="#" class="program-card">
+                <div class="card-status">Active</div>
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Purwadhika Season 1">
+                </div>
+                <div class="card-body">
+                    <div class="card-category">Digital Marketing</div>
+                    <h3 class="card-title">Purwadhika X HPM: Season 1</h3>
+                    <p class="card-desc">Fondasi digital marketing, pengenalan platform media sosial, dan dasar-dasar content creation untuk dealer otomotif.</p>
+                    <div class="card-footer">
+                        <span>📚 Modul Tersedia</span>
+                        <span class="enter-link">Mulai Belajar →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- KARTU 2: PURWADHIKA S2 -->
+            <a href="#" class="program-card">
+                <div class="card-status">Active</div>
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Purwadhika Season 2">
+                </div>
+                <div class="card-body">
+                    <div class="card-category">Advanced Strategy</div>
+                    <h3 class="card-title">Purwadhika X HPM: Season 2</h3>
+                    <p class="card-desc">Strategi lanjutan digital ads, performance marketing, dan optimasi konversi penjualan untuk mencetak leads berkualitas.</p>
+                    <div class="card-footer">
+                        <span>📚 Modul Tersedia</span>
+                        <span class="enter-link">Mulai Belajar →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- KARTU 3: REVOU X HPM -->
             <a href="revou.html" class="program-card">
                 <div class="card-status">Active</div>
                 <div class="card-img">
-                    <!-- Placeholder gambar keren -->
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Digital Marketing">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Digital Strategy RevoU">
                 </div>
                 <div class="card-body">
                     <div class="card-category">Digital Strategy</div>
@@ -156,40 +204,6 @@
                 </div>
             </a>
 
-            <!-- KARTU 2: Dummy / Coming Soon -->
-            <div class="program-card" style="cursor: not-allowed;">
-                <div class="card-status coming-soon">Segera Hadir</div>
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Product Knowledge" style="filter: grayscale(100%);">
-                </div>
-                <div class="card-body">
-                    <div class="card-category">Product Knowledge</div>
-                    <h3 class="card-title">Honda e:HEV Hybrid Mastery</h3>
-                    <p class="card-desc">Pahami teknologi hybrid Honda secara mendalam untuk menangani keberatan pelanggan dan melakukan up-sell.</p>
-                    <div class="card-footer">
-                        <span style="color: var(--text-muted);">Terkunci</span>
-                        <span style="color: var(--text-muted);">Nantikan</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- KARTU 3: Dummy / Coming Soon -->
-            <div class="program-card" style="cursor: not-allowed;">
-                <div class="card-status coming-soon">Segera Hadir</div>
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sales Conversion" style="filter: grayscale(100%);">
-                </div>
-                <div class="card-body">
-                    <div class="card-category">Sales & Negotiation</div>
-                    <h3 class="card-title">Sales Conversion Techniques</h3>
-                    <p class="card-desc">Pelajari cara menindaklanjuti lead dari digital (WhatsApp/DM) menjadi janji temu dan SPK yang solid.</p>
-                    <div class="card-footer">
-                        <span style="color: var(--text-muted);">Terkunci</span>
-                        <span style="color: var(--text-muted);">Nantikan</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -201,12 +215,12 @@
         </div>
     </footer>
 
-    <!-- SCRIPT TEMA -->
+    <!-- SCRIPT TEMA & SCROLL -->
     <script>
+        // Logika Dark / Light Mode
         const bodyEl = document.body;
         const themeBtn = document.getElementById('theme-btn');
         
-        // Cek localStorage, default ke Light Mode
         if (localStorage.getItem('elearning-theme') === 'dark') {
             bodyEl.setAttribute('data-theme', 'dark');
             themeBtn.innerText = '☀️';
@@ -223,6 +237,22 @@
                 themeBtn.innerText = '☀️';
             }
         }
+
+        // Logika Back to Top Button
+        const backToTopBtn = document.getElementById("back-to-top");
+        
+        window.addEventListener("scroll", () => {
+            // Tampilkan tombol kalau layar di-scroll lebih dari 300px ke bawah
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("visible");
+            } else {
+                backToTopBtn.classList.remove("visible");
+            }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
     </script>
 </body>
 </html>
