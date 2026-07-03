@@ -6,6 +6,9 @@
     <title>Digital Dealer Training 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* === EFEK SMOOTH SCROLL === */
+        html { scroll-behavior: smooth; }
+
         /* === TEMA LIGHT MODE (Default Awal) === */
         :root {
             --bg-body: #ffffff;
@@ -148,20 +151,69 @@
         .material-link:hover { background: var(--btn-hover); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
         .material-icon { font-size: 1.5rem; }
 
-        /* Theme Toggle floating button */
-        .theme-toggle { position: fixed; bottom: 30px; right: 30px; background: var(--bg-card); border: 1px solid var(--border-color); width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; color: var(--text-main); box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: 0.2s; display: flex; align-items: center; justify-content: center;}
+        /* FLOATING BUTTONS (THEME & BACK TO TOP) */
+        .theme-toggle { position: fixed; bottom: 30px; right: 30px; background: var(--bg-card); border: 1px solid var(--border-color); width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; color: var(--text-main); box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: 0.2s; display: flex; align-items: center; justify-content: center; z-index: 100;}
         .theme-toggle:hover { transform: scale(1.1); }
         
+        .back-to-top { position: fixed; bottom: 90px; right: 30px; background: var(--red-brand); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: 0.3s; z-index: 100; opacity: 0; visibility: hidden; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-hover); transform: translateY(-3px); }
+
         .status-msg { text-align: center; padding: 40px; color: var(--text-muted); font-size: 1.1rem;}
+
+        /* === PASSWORD GATEKEEPER === */
+        #password-gate { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--bg-body); z-index: 9999; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            text-align: center; padding: 20px; transition: opacity 0.4s ease;
+        }
+        .gate-box { 
+            background: var(--bg-card); padding: 40px; border-radius: 12px; 
+            box-shadow: var(--shadow-hover); max-width: 400px; width: 100%; 
+            border: 1px solid var(--border-color); 
+        }
+        .gate-box h2 { margin-bottom: 10px; color: var(--text-main); font-size: 1.6rem; }
+        .gate-box p { color: var(--text-muted); margin-bottom: 25px; font-size: 0.95rem; }
+        .gate-input { 
+            width: 100%; padding: 12px; border: 1px solid var(--border-color); 
+            border-radius: 6px; margin-bottom: 15px; font-size: 1rem; 
+            text-align: center; letter-spacing: 1px; background: var(--bg-body); color: var(--text-main);
+        }
+        .gate-input:focus { border-color: var(--red-brand); outline: none; }
+        .gate-btn { 
+            width: 100%; padding: 12px; background: var(--red-brand); color: white; 
+            border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; 
+        }
+        .gate-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .gate-error { color: var(--red-brand); font-size: 0.85rem; margin-top: 15px; display: none; font-weight: 600; }
     </style>
 </head>
 <body>
 
+    <!-- ============================================== -->
+    <!-- PASSWORD GATEKEEPER                            -->
+    <!-- ============================================== -->
+    <div id="password-gate">
+        <div class="gate-box">
+            <h2>🔒 Restricted Access</h2>
+            <p>Materi ini bersifat rahasia dan khusus untuk tim internal Honda Bintaro.</p>
+            <input type="password" id="gate-password" class="gate-input" placeholder="Masukkan Password" onkeypress="handleGateEnter(event)">
+            <button class="gate-btn" onclick="checkGatePassword()">Buka Akses Materi</button>
+            <div id="gate-error" class="gate-error">❌ Password salah! Silakan coba lagi.</div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- HALAMAN UTAMA                                  -->
+    <!-- ============================================== -->
     <div class="top-banner">
         <div class="banner-title">Digital Dealer Training 2026</div>
     </div>
 
+    <!-- Floating Buttons -->
     <button id="theme-btn" class="theme-toggle" title="Toggle Dark/Light Mode">🌙</button>
+    <button id="back-to-top" class="back-to-top" title="Kembali ke Atas">↑</button>
 
     <div class="container">
         
@@ -242,6 +294,7 @@
 
             <div class="content-box" id="section-video" style="display:none;">
                 <h3>Sesi Rekaman / Pre-Lecture</h3>
+                <!-- Tempat Tab Bagian 1 & Bagian 2 -->
                 <div class="video-tabs" id="det-video-tabs"></div>
                 <div class="video-wrapper">
                     <iframe id="det-video" src="" frameborder="0" allowfullscreen></iframe>
@@ -309,7 +362,6 @@
             
             document.getElementById('global-contact-info').innerText = g.contactInfo || "";
 
-            // RENDER DINAMIS IMPORTANT LINKS BLOCK
             const linksContainer = document.getElementById('important-links-container');
             linksContainer.innerHTML = '';
             
@@ -407,7 +459,6 @@
                 document.getElementById('det-speaker-img').src = s.speaker.image || "https://placehold.co/300x300";
             }
 
-            // === LOGIKA MULTIPLE VIDEO TABS ===
             const sectionVideo = document.getElementById('section-video');
             const videoTabs = document.getElementById('det-video-tabs');
             const videoIframe = document.getElementById('det-video');
@@ -416,7 +467,6 @@
             videoIframe.src = '';
             
             let videos = [];
-            // Deteksi jika user memasukkan beberapa ID dipisah koma
             if(s.materials && s.materials.youtubeId) {
                 videos = s.materials.youtubeId.split(',').map(v => v.trim()).filter(v => v !== '');
             }
@@ -424,7 +474,6 @@
             if(videos.length > 0) {
                 sectionVideo.style.display = "block";
                 
-                // Kalau ada lebih dari 1 video, buat tab
                 if(videos.length > 1) {
                     videoTabs.style.display = "flex";
                     videos.forEach((vidId, idx) => {
@@ -433,28 +482,20 @@
                         btn.innerText = `Bagian ${idx + 1}`;
                         
                         btn.onclick = () => {
-                            // Hapus class active dari semua tombol
                             document.querySelectorAll('.vid-tab-btn').forEach(b => b.classList.remove('active'));
-                            // Tambahkan ke tombol yang diklik
                             btn.classList.add('active');
-                            // Ganti sumber iframe
                             videoIframe.src = `https://www.youtube.com/embed/${vidId}?rel=0`;
                         };
                         videoTabs.appendChild(btn);
                     });
                 } else {
-                    // Kalau cuma 1 video, sembunyikan baris tab
                     videoTabs.style.display = "none";
                 }
-                
-                // Load video pertama secara otomatis
                 videoIframe.src = `https://www.youtube.com/embed/${videos[0]}?rel=0`;
             } else {
-                // Sembunyikan seluruh section jika tidak ada video
                 sectionVideo.style.display = "none";
             }
 
-            // Render During Session Dinamis
             const duringContainer = document.getElementById('container-during');
             const duringSection = document.getElementById('section-during');
             duringContainer.innerHTML = '';
@@ -465,7 +506,6 @@
                 duringSection.style.display = "none";
             }
 
-            // Render After Session Dinamis
             const afterContainer = document.getElementById('container-after');
             const afterSection = document.getElementById('section-after');
             afterContainer.innerHTML = '';
@@ -488,7 +528,24 @@
             window.scrollTo(0,0);
         }
 
+        // ==============================================
+        // LOGIKA BACK TO TOP
+        // ==============================================
+        const backToTopBtn = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("visible");
+            } else {
+                backToTopBtn.classList.remove("visible");
+            }
+        });
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // ==============================================
         // TOGGLE TEMA
+        // ==============================================
         const bodyEl = document.body;
         const themeBtn = document.getElementById('theme-btn');
         
@@ -506,6 +563,38 @@
                 bodyEl.setAttribute('data-theme', 'dark');
                 localStorage.setItem('training-theme', 'dark');
                 themeBtn.innerText = '☀️';
+            }
+        }
+
+        // ==============================================
+        // LOGIKA PASSWORD GATEKEEPER (ENCRYPTED / OBFUSCATED)
+        // ==============================================
+        // Password default: "HONDABINTARO" 
+        // Hasil dari Obfuscation Base64 -> T1JBVE5JQkFETk9I
+        const _0xhash = "T1JBVE5JQkFETk9I"; 
+        
+        if (sessionStorage.getItem("isHondaInternal") === "true") {
+            document.getElementById("password-gate").style.display = "none";
+        }
+
+        function checkGatePassword() {
+            const input = document.getElementById("gate-password").value;
+            // Enkripsi input user dengan cara teksnya dibalik lalu diubah ke Base64
+            const scrambled = btoa(input.split('').reverse().join(''));
+            
+            if (scrambled === _0xhash) {
+                sessionStorage.setItem("isHondaInternal", "true"); 
+                const gate = document.getElementById("password-gate");
+                gate.style.opacity = "0";
+                setTimeout(() => { gate.style.display = "none"; }, 400);
+            } else {
+                document.getElementById("gate-error").style.display = "block";
+            }
+        }
+
+        function handleGateEnter(e) {
+            if (e.key === 'Enter') {
+                checkGatePassword();
             }
         }
 
