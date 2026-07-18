@@ -50,7 +50,7 @@
       }
     },
     "sesi-2": {
-      "title": "Sesi #2 - Optimasi Journey: Menyelaraskan Konten dengan Perilaku Pembeli",
+      "title": "Sesi #2 - DM Roadmap, Customer Journey, KPI Planning & Budgeting",
       "category": "Class Session",
       "date": "June 18, 2026",
       "participant": "All",
@@ -67,33 +67,20 @@
         "Penggunaan AI untuk Efisiensi: Mempelajari tips dan trik menggunakan Gemini untuk membantu menganalisis metrik konten dengan lebih cepat."
       ],
       "materials": {
-        "youtubeId": "lctfBvUNzzU, eoj5HxI4UEY",
+        "youtubeId": "LmDFBVJ-CFg",
         "during": [
           {
             "icon": "📊",
             "title": "Materials",
-            "desc": "Sesi 2 - Optimasi Journey",
-            "url": "https://drive.google.com/file/d/1X74Vw01VJBpYc12wHIsG7qThj2AaaBul/view?usp=drive_link"
-          },
-          {
-            "icon": "📝",
-            "title": "Exercise",
-            "desc": "Latihan Sesi 2",
-            "url": "https://docs.google.com/document/d/1P5i2cgs0T9kH2eqd4E8VLLzRnO5GLhNt/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+            "desc": "Sesi 2 - DM Roadmap, Customer Journey, KPI Planning & Budgeting",
+            "url": "https://docs.google.com/presentation/d/1sQzh0N4ykbjHeRN41jyicUIIUZAWRbiu/edit?usp=drive_link&ouid=107274928155978338555&rtpof=true&sd=true"
           }
         ],
-        "after": [
-          {
-            "icon": "✅",
-            "title": "Submit attendance and feedback",
-            "desc": "Feedback-CT",
-            "url": "#"
-          }
-        ]
+        "after": []
       }
     },
     "sesi-3": {
-      "title": "Sesi #3 - AI untuk Workflow: Structured AI Prompting & Efisiensi Workflow Produksi Konten",
+      "title": "Sesi #3 - Performance Marketing & Sales Boosting On Social Media",
       "category": "Class Session",
       "date": "June 19, 2026",
       "participant": "All",
@@ -109,29 +96,16 @@
         "Praktik Produksi Konten: Mempraktikkan 5 langkah workflow dari ide hingga menjadi konten menggunakan AI, dengan target menghasilkan 10 ide konten, 4 draft konten beserta caption dan brief visual untuk dieksekusi."
       ],
       "materials": {
-        "youtubeId": "Vdeitu90Nlw, pQ8pnf8DIjY",
+        "youtubeId": "RaUZ9yDiANY",
         "during": [
           {
             "icon": "📊",
             "title": "Material",
-            "desc": "Sesi 3 - AI untuk Workflow: Structured AI Prompting & Efisiensi Workflow Produksi Konten",
-            "url": "https://drive.google.com/file/d/1Jri1duVSrUxJ4qT83JPqv6N5B7y6M9Nv/view?usp=drive_link"
-          },
-          {
-            "icon": "📝",
-            "title": "Exercise",
-            "desc": "Latihan Sesi 3",
-            "url": "https://docs.google.com/document/d/1We93YPpPFGXulQsEECL83IawSbOW3m8G/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+            "desc": "Sesi 3 - Performance Marketing & Sales Boosting On Social Media",
+            "url": "https://docs.google.com/presentation/d/1xdKDjmaK54RqFaXjQXE8vZvBEAYcAPd7/edit?usp=drive_link&ouid=107274928155978338555&rtpof=true&sd=true"
           }
         ],
-        "after": [
-          {
-            "icon": "✅",
-            "title": "Feedback",
-            "desc": "",
-            "url": "#"
-          }
-        ]
+        "after": []
       }
     },
     "sesi-4": {
