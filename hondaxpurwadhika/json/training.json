@@ -1,7 +1,7 @@
 {
   "global": {
-    "pageTitle": "RevoU X HPM: Digital Dealer Training | Perform",
-    "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan RevoU.",
+    "pageTitle": "Purwadhika X HPM: Digital Dealer Training | Perform",
+    "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan Purwadhika.",
     "learningJourneyImg": "",
     "objectives": [
       "Workflow konten Honda yang lebih terstruktur",
@@ -16,39 +16,7 @@
       "Berikan masukan agar kami dapat melakukan perbaikan 💯"
     ],
     "contactInfo": "Jika masih memiliki pertanyaan, dapat menghubungi Tim RevoU melalui Grup WhatsApp.",
-    "importantBlocks": [
-      {
-        "type": "heading",
-        "text": "1️⃣ Attendance & Feedback Form 👇"
-      },
-      {
-        "type": "heading-sub",
-        "text": "RevoU Attendance & Feedback Form"
-      },
-      {
-        "type": "card",
-        "title": "Feedback-CT",
-        "urlText": "https://feedback-ct.paperform.co/...",
-        "url": "https://feedback-ct.paperform.co/"
-      },
-      {
-        "type": "heading",
-        "text": "2️⃣ Pre-test Assessment (Foundation) 👇"
-      },
-      {
-        "type": "card",
-        "title": "Pre-Test: Perform",
-        "urlText": "https://forms.gle/oJLNFyTRxMQ1ix1z9",
-        "url": "https://forms.gle/oJLNFyTRxMQ1ix1z9"
-      },
-      {
-        "type": "list",
-        "items": [
-          "Mohon lengkapi pre-test untuk membantu kami memahami tingkat kemampuanmu saat ini.",
-          "<b>Deadline: Rabu, 17 Juni 2026 pukul 09.00 WIB</b> (sebelum sesi 1 dimulai)"
-        ]
-      }
-    ]
+    "importantBlocks": []
   },
   "sessions": {
     "sesi-1": {
