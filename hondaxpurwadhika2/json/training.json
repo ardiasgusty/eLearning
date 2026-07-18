@@ -1,0 +1,446 @@
+{
+  "global": {
+    "pageTitle": "RevoU X HPM: Digital Dealer Training | Perform",
+    "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan RevoU.",
+    "learningJourneyImg": "",
+    "objectives": [
+      "Workflow konten Honda yang lebih terstruktur",
+      "Konten selaras dengan brand identity Honda",
+      "Konsistensi publikasi dan engagement meningkat",
+      "Rencana aksi dan KPI yang terukur"
+    ],
+    "groundRules": [
+      "Datang tepat waktu 🤫",
+      "Berpartisipasi dan ajukan pertanyaan selama pembelajaran 🙋",
+      "Biasakan dirimu dengan semua alat kelas dan hubungi Class Manager di grup WhatsApp jika menghadapi kesulitan teknis 👩‍💻",
+      "Berikan masukan agar kami dapat melakukan perbaikan 💯"
+    ],
+    "contactInfo": "Jika masih memiliki pertanyaan, dapat menghubungi Tim RevoU melalui Grup WhatsApp.",
+    "importantBlocks": [
+      {
+        "type": "heading",
+        "text": "1️⃣ Attendance & Feedback Form 👇"
+      },
+      {
+        "type": "heading-sub",
+        "text": "RevoU Attendance & Feedback Form"
+      },
+      {
+        "type": "card",
+        "title": "Feedback-CT",
+        "urlText": "https://feedback-ct.paperform.co/...",
+        "url": "https://feedback-ct.paperform.co/"
+      },
+      {
+        "type": "heading",
+        "text": "2️⃣ Pre-test Assessment (Foundation) 👇"
+      },
+      {
+        "type": "card",
+        "title": "Pre-Test: Perform",
+        "urlText": "https://forms.gle/oJLNFyTRxMQ1ix1z9",
+        "url": "https://forms.gle/oJLNFyTRxMQ1ix1z9"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Mohon lengkapi pre-test untuk membantu kami memahami tingkat kemampuanmu saat ini.",
+          "<b>Deadline: Rabu, 17 Juni 2026 pukul 09.00 WIB</b> (sebelum sesi 1 dimulai)"
+        ]
+      }
+    ]
+  },
+  "sessions": {
+    "sesi-1": {
+      "title": "Sesi #1 - Evaluasi Channel: Seberapa Efektif yang Sudah Berjalan?",
+      "category": "Class Session",
+      "date": "June 17, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Pemahaman Tren Digital Otomotif: Memahami pergeseran perilaku pembeli mobil yang sudah berubah ke arah digital dan prediksi arah tren otomotif di Indonesia.",
+        "Analisis Studi Kasus Dealer: Membedakan antara metrik vanity (seperti tingginya jumlah followers dan likes) dengan performa yang menghasilkan leads nyata (seperti WhatsApp Inquiry).",
+        "Praktik Membaca Instagram Insights: Mempelajari langkah-langkah teknis untuk melihat Instagram Insights, termasuk cara menghitung Engagement Rate, rata-rata Reach per post, dan jumlah DM yang masuk.",
+        "Benchmarking Performa: Mengetahui cara menganalisa metrik Instagram dealer dan membandingkannya dengan benchmark standar.",
+        "Penerapan Metodologi Gap Analysis: Mempraktikkan pengisian 4 kolom Gap Analysis untuk mengidentifikasi masalah (bottleneck), menentukan target yang realistis, dan menyusun prioritas perbaikan performa."
+      ],
+      "materials": {
+        "youtubeId": "zRjKjPTmjcs, jH2TYQdd1vQ",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Materials",
+            "desc": "Sesi 1 - Evaluasi Channel",
+            "url": "https://drive.google.com/file/d/1wkTcW5Ed-2fulRG4l_jcw8RyY7gQk4xd/view"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 1",
+            "url": "https://docs.google.com/document/d/17si9jBhNHVXSk5X2OrsksdFAe0Xqs6ad/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Submit attendance and feedback",
+            "desc": "Feedback-CT",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-2": {
+      "title": "Sesi #2 - Optimasi Journey: Menyelaraskan Konten dengan Perilaku Pembeli",
+      "category": "Class Session",
+      "date": "June 18, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Menyelaraskan Konten dengan Perjalanan Pembeli: Memahami cara menyelaraskan strategi konten dengan perilaku calon pembeli mobil, serta membangun jalur yang tepat dari sekadar scroll hingga menjadi booking.",
+        "Penerapan Framework Pemasaran: Mempelajari bagaimana kerangka kerja AIDA (Awareness, Interest, Desire, Action) dan See-Think-Do-Care dapat saling melengkapi untuk memetakan perjalanan konsumen.",
+        "Strategi & Distribusi Konten per Tahapan: Mengetahui jenis konten spesifik yang dibutuhkan untuk setiap tahap (Awareness, Interest, Desire, Action) dan bagaimana proporsi distribusi konten yang ideal setiap bulannya.",
+        "Praktik Pemetaan Konten (Content-Funnel Alignment): Mempraktikkan cara memetakan 10 konten terbaru dealer ke dalam Content-Funnel Alignment Matrix untuk mengidentifikasi kekosongan atau kelemahan pada funnel pemasaran.",
+        "Penggunaan AI untuk Efisiensi: Mempelajari tips dan trik menggunakan Gemini untuk membantu menganalisis metrik konten dengan lebih cepat."
+      ],
+      "materials": {
+        "youtubeId": "lctfBvUNzzU, eoj5HxI4UEY",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Materials",
+            "desc": "Sesi 2 - Optimasi Journey",
+            "url": "https://drive.google.com/file/d/1X74Vw01VJBpYc12wHIsG7qThj2AaaBul/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 2",
+            "url": "https://docs.google.com/document/d/1P5i2cgs0T9kH2eqd4E8VLLzRnO5GLhNt/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Submit attendance and feedback",
+            "desc": "Feedback-CT",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-3": {
+      "title": "Sesi #3 - AI untuk Workflow: Structured AI Prompting & Efisiensi Workflow Produksi Konten",
+      "category": "Class Session",
+      "date": "June 19, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Penerapan AI dalam Alur Kerja (Workflow): Memahami bagaimana AI (Artificial Intelligence) relevan untuk dealer Honda dan menggunakannya untuk mengubah proses kerja dari manual menjadi scalable, sehingga mengurangi potensi bottleneck dalam produksi konten.",
+        "Penggunaan Gemini AI & Gems: Mengenal dan langsung menggunakan tools Gemini AI, khususnya fitur 'Gemini Gems' yang sudah dikustomisasi (Content Idea Generator), untuk mempercepat pembuatan konten.",
+        "Teknik Prompting yang Efektif: Mempelajari 5 elemen wajib (Role, Task, Output Format, Context, Constraints) dalam menyusun \"Anatomy of a Good Prompt\", agar AI menghasilkan output yang spesifik, berkarakter, dan sesuai dengan brand voice Honda (menghindari kata-kata seperti \"TERMURAH\").",
+        "Praktik Produksi Konten: Mempraktikkan 5 langkah workflow dari ide hingga menjadi konten menggunakan AI, dengan target menghasilkan 10 ide konten, 4 draft konten beserta caption dan brief visual untuk dieksekusi."
+      ],
+      "materials": {
+        "youtubeId": "Vdeitu90Nlw, pQ8pnf8DIjY",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 3 - AI untuk Workflow: Structured AI Prompting & Efisiensi Workflow Produksi Konten",
+            "url": "https://drive.google.com/file/d/1Jri1duVSrUxJ4qT83JPqv6N5B7y6M9Nv/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 3",
+            "url": "https://docs.google.com/document/d/1We93YPpPFGXulQsEECL83IawSbOW3m8G/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-4": {
+      "title": "Sesi #4 - Brand Alignment Review: Selaraskan Konten dengan Suara Brand Honda",
+      "category": "Class Session",
+      "date": "June 22, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Pentingnya Konsistensi Brand: Memahami bahwa menyelaraskan konten dengan suara brand Honda bukan sekadar urusan estetika visual, melainkan strategi penting untuk membangun kepercayaan calon pembeli dan berdampak langsung pada bisnis (peningkatan leads).",
+        "Penerapan Framework 3C: Mempelajari dan mengaplikasikan Framework Brand Alignment - The 3C Model untuk mengevaluasi apakah konten yang dibuat sudah selaras dengan identitas merek.",
+        "Audit Konten & Checklist Wajib: Mengetahui 6 kesalahan umum yang harus segera diperbaiki dan menggunakan Brand Alignment Checklist (berisi 15 pertanyaan wajib) untuk mengaudit konten dealer.",
+        "Praktik Revisi Konten dengan AI: Mempraktikkan proses audit dan revisi pada 4 draf konten menggunakan bantuan Gemini Gems (Content Auditor) berdasarkan panduan 3C Framework, serta mendokumentasikan perubahannya."
+      ],
+      "materials": {
+        "youtubeId": "u7aBTNi2xBM, fmX-Od8SSzQ",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 4 - Brand Alignment Review: Selaraskan Konten dengan Suara Brand Honda",
+            "url": "https://drive.google.com/file/d/18ZLcvyUrgkwQoiWM2pHyn8dq6BJGoXTm/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 4",
+            "url": "https://docs.google.com/document/d/1tFv59rnXGETL416dUtPoIDekQsDROhYp/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-5": {
+      "title": "Sesi #5 - Kalender Konten Berbasis KPI & Instagram Boost Strategy",
+      "category": "Class Session",
+      "date": "June 23, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Strategi 4 Pilar Konten: Memahami 4 pilar konten utama Honda (Product Education, Dealer Credibility, Customer Story, Promo Activation) beserta peran bisnisnya masing-masing, serta cara mengalokasikan proporsi idealnya setiap bulan.",
+        "Penetapan KPI & Analisis Metrik: Mempelajari SOP (Standar Operasional Prosedur) untuk menetapkan target KPI yang realistis, serta membedakan antara metrik yang relevan (Actionable Metrics) dengan angka semu (Vanity Metrics) di Instagram.",
+        "Keseimbangan Kalender Konten: Mengetahui cara menyeimbangkan strategi penyusunan kalender antara konten Campaign (kampanye musiman/promosi) dan konten Evergreen (relevan untuk jangka panjang).",
+        "Optimasi Instagram Boost: Memahami alasan mengapa strategi Boost berbayar tetap dibutuhkan meskipun performa konten organik sudah konsisten, beserta cara mengoptimasinya agar efektif mendatangkan leads.",
+        "Praktik Pembuatan Content Calendar: Mempraktikkan langsung penyusunan kalender konten selama 4 minggu yang mencakup 4 pilar konten, target KPI, dan penandaan konten prioritas yang akan di-boost."
+      ],
+      "materials": {
+        "youtubeId": "Q8A2AvBmul8, ej_phWKObjA",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 5 - Kalender Konten Berbasis KPI & Instagram Boost Strategy",
+            "url": "https://drive.google.com/file/d/1TDgHgWlAkiTFOmkjFH7F_cjYYZayyG77/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 5",
+            "url": "https://docs.google.com/spreadsheets/d/1urRGcZVMT756wiKos-tpSxiFeEO3fGyP/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise Group",
+            "desc": "Latihan Group Sesi 5",
+            "url": "https://docs.google.com/spreadsheets/d/164i2rrBTEXTZJGqqEDjaL1kmLrvJ_oXWCNgiFRQPG64/edit?usp=sharing"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-6": {
+      "title": "Sesi #6 - Sales-Driven Content: Konten Bukan Yang Sekadar Dilihat - Namun Menghasilkan",
+      "category": "Class Session",
+      "date": "June 24, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Mindset Konversi (Engagement vs Leads): Memahami pergeseran pola pikir dari sekadar mengejar engagement tinggi menjadi fokus pada pembuatan konten yang memiliki tujuan dan mampu menghasilkan leads serta aksi nyata.",
+        "Penerapan Funnel & Inverted Pyramid: Mempelajari Funnel Konversi Instagram Dealer (mengubah interaksi dari scroll hingga ke showroom) dan penerapan Inverted Pyramid Model untuk menyusun struktur pesan yang berujung pada Call-to-Action (CTA).",
+        "Copywriting Frameworks & CTA: Menguasai tiga framework copywriting (PAS, FAB, StoryBrand) untuk diaplikasikan per pilar konten Honda, serta merumuskan CTA yang kuat (Sales-Driven) sesuai format konten.",
+        "Optimasi Story & Highlight: Memaksimalkan fitur Instagram di luar Feed dengan memanfaatkan Story secara aktif dan menyusun Highlight agar berfungsi sebagai \"mini website\" dealer yang bekerja 24 jam.",
+        "Digital-to-Floor Conversion Flow: Memahami alur pipa (pipeline) konversi dari aset digital hingga ke lantai pameran (showroom), mengatur kolaborasi dengan Sales Consultant, dan mengukur metrik keberhasilan yang benar-benar penting."
+      ],
+      "materials": {
+        "youtubeId": "eGR_HrPdZDU, 6vsnR190dY4",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 6 - Sales-Driven Content: Konten Bukan Yang Sekadar Dilihat - Namun Menghasilkan",
+            "url": "https://drive.google.com/file/d/1WZQEoski0eyVkuVNMgnQXPESN7laNuac/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 6",
+            "url": "https://docs.google.com/document/d/1cTvpeFebKKn_ZmDsoIwPj_nTG0gWlb-E/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-7": {
+      "title": "Sesi #7 - Governance Digital: Sistem Yang Melindungi Reputasi Dealer",
+      "category": "Class Session",
+      "date": "June 25, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Pemahaman Tata Kelola (Governance) Digital: Memahami pentingnya memiliki sistem tata kelola digital yang jelas untuk melindungi reputasi dealer dari dampak panjang akibat kesalahan pada satu konten yang dipublikasikan.",
+        "Alur Persetujuan (Approval) Konten: Mempelajari alur kerja yang disiplin dari tahap brief hingga publish, memastikan tidak ada proses persetujuan yang terlewat untuk meminimalisir risiko.",
+        "Penerapan RACI Matrix: Mengetahui cara mendistribusikan peran menggunakan RACI Matrix agar memperjelas siapa pihak yang bertanggung jawab, menyetujui, memberi masukan, dan mendapat informasi pada setiap tahapan pembuatan konten.",
+        "Manajemen Risiko & Mitigasi Krisis: Menyadari bahwa setiap konten memiliki tingkat risiko yang berbeda dan memahami langkah-langkah penanganan (mitigasi) darurat yang harus dilakukan jika konten yang salah sudah telanjur tayang.",
+        "Praktik Penyusunan Dokumen Governance: Mempraktikkan penyusunan Digital Content Governance Document (yang mencakup Matriks RACI, Flowchart Approval, dan Risk Register) serta menerapkan pengecekan mandiri (Self-Check) pada produksi Mini Content Pack."
+      ],
+      "materials": {
+        "youtubeId": "3JZkHFODHR4, Ndcn5n8Xm9o",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 7 - Governance Digital: Sistem Yang Melindungi Reputasi Dealer",
+            "url": "https://drive.google.com/file/d/1ZNPwbWCL2Z-sZHFo7he7wuysGODToKLI/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 7",
+            "url": "https://docs.google.com/document/d/1wd93MZgT_Zw4imOpOY9Ik3XcFMh-F80O/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-8": {
+      "title": "Sesi #8 - Advanced Response Handling: Mini Showcase + Positive Engagement & Reputation Defense",
+      "category": "Class Session",
+      "date": "June 26, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Evaluasi Konten (Mini Showcase): Melakukan evaluasi terhadap konten yang telah dibuat melalui sesi Mini Showcase dengan fokus pada keselarasan merek (Brand Alignment) dalam membantu perjalanan pembeli Honda.",
+        "Psikologi dan Matriks Respons: Memahami psikologi di balik sebuah komentar (seperti fakta bahwa 80% audiens sebenarnya hanya ingin didengar) dan menggunakan Response Decision Matrix untuk menentukan tindakan yang tepat, seperti kapan harus membalas di publik/DM, menghapus, atau mengekskalasi masalah ke manajemen.",
+        "Penerapan CARE Framework: Mempelajari dan mengaplikasikan formula CARE Framework untuk merespons interaksi audiens—baik pertanyaan maupun keluhan—secara efektif, berempati, dan kontekstual.",
+        "Manajemen Krisis & Black Campaign: Mengenali perbedaan antara komentar negatif biasa dengan kampanye hitam (Black Campaign), mengidentifikasi tanda-tanda krisis digital sejak dini, dan menerapkan kerangka kerja \"STOP, ASSESS, ACT\" untuk menghadapinya.",
+        "Praktik AI Response Handler: Memanfaatkan Gemini Gems (Response Handler) untuk mensimulasikan dan merespons berbagai skenario nyata secara terstruktur, guna mengubah interaksi menjadi engagement berkualitas yang berfungsi sebagai pertahanan reputasi jangka panjang."
+      ],
+      "materials": {
+        "youtubeId": "Is5b6lSFdSg, HG40vMjfoR0",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Deck Material",
+            "desc": "Sesi 8 - Advanced Response Handling: Mini Showcase + Positive Engagement & Reputation Defense",
+            "url": "https://drive.google.com/file/d/1GDasxgdXJP229_Qi4-aELTFxU7FkeKC0/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Link Baru",
+            "desc": "Latihan Sesi 8",
+            "url": "https://docs.google.com/document/d/1krU6rLmXKYy2aa-ckb1tGWoX0B6GySQ1/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    },
+    "sesi-9": {
+      "title": "Sesi #9 - KPI Review & 30-Day Action Plan",
+      "category": "Class Session",
+      "date": "June 29, 2026",
+      "participant": "All",
+      "speaker": {
+        "name": "Adinda Nindyachandra",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
+        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+      },
+      "learnings": [
+        "Pergeseran Mindset & Literasi Data: Memahami pergeseran mindset dari sekadar membaca angka menjadi kemampuan menginterpretasikan data (Data Interpretation Skill) dan memperlakukannya sebagai aset yang bermakna bagi bisnis.",
+        "Pemantauan KPI & Metrik: Mempelajari cara mengenali metrik yang benar-benar penting, serta menerapkan sistem pemantauan data yang simpel, konsisten, dan actionable (baik secara mingguan maupun bulanan).",
+        "Siklus Evaluasi Berkelanjutan: Mengaplikasikan strategi pemasaran berbasis data (Data-Driven Marketing Strategy) melalui siklus: Evaluate (Evaluasi), Identify Gap (Identifikasi Celah), Adjust (Sesuaikan), dan Re-execute (Eksekusi Ulang).",
+        "Praktik Final (Dashboard & Action Plan): Melakukan simulasi membaca Instagram Insights, mengisi KPI Dashboard dengan data aktual, dan menyusun 30-Day Action Plan sebagai panduan eksekusi bulan berikutnya.",
+        "Sistem Monitoring Pasca-Training: Mengetahui gambaran program Dashboard Monitoring dan dukungan sistem yang akan berjalan selama 1 bulan ke depan setelah seluruh sesi selesai."
+      ],
+      "materials": {
+        "youtubeId": "7pNhK-spMHo, IqjXkZJwUC8",
+        "during": [
+          {
+            "icon": "📊",
+            "title": "Material",
+            "desc": "Sesi 9 - KPI Review & 30-Day Action Plan",
+            "url": "https://drive.google.com/file/d/17LTpH12aYG3fLaUcDgkx-YdMMlGC09r1/view?usp=drive_link"
+          },
+          {
+            "icon": "📝",
+            "title": "Exercise",
+            "desc": "Latihan Sesi 9",
+            "url": "https://docs.google.com/spreadsheets/d/1yEEyOAyZfsdLsz9F35jheSF_mrfjn0T1/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+          }
+        ],
+        "after": [
+          {
+            "icon": "✅",
+            "title": "Feedback",
+            "desc": "",
+            "url": "#"
+          }
+        ]
+      }
+    }
+  }
+}
