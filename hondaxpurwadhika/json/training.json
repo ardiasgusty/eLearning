@@ -2,7 +2,7 @@
   "global": {
     "pageTitle": "Purwadhika X HPM: Digital Dealer Training | Perform",
     "welcomeText": "Selamat datang di Program Digital Dealer Training untuk PIC Dealer Honda, sebuah program pembelajaran strategis yang dirancang melalui kolaborasi antara HPM dan Purwadhika.",
-    "learningJourneyImg": "",
+    "learningJourneyImg": "https://s6.imgcdn.dev/YFgre9.jpg",
     "objectives": [
       "Workflow konten Honda yang lebih terstruktur",
       "Konten selaras dengan brand identity Honda",
@@ -20,14 +20,14 @@
   },
   "sessions": {
     "sesi-1": {
-      "title": "Sesi #1 - Evaluasi Channel: Seberapa Efektif yang Sudah Berjalan?",
+      "title": "Sesi #1 - Data-Driven Digital Marketing Strategy & AI For Marketing",
       "category": "Class Session",
-      "date": "June 17, 2026",
+      "date": "October 7, 2024",
       "participant": "All",
       "speaker": {
-        "name": "Adinda Nindyachandra",
-        "image": "https://placehold.co/300x300/ffcc00/333?text=Adinda",
-        "desc": "Kak Adinda memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing..."
+        "name": "Faris",
+        "image": "https://placehold.co/300x300/ffcc00/333?text=Faris",
+        "desc": "Kak Faris memiliki perpaduan keahlian yang menjadikannya sosok yang sangat tepat untuk mengupas tuntas strategi Digital Marketing."
       },
       "learnings": [
         "Pemahaman Tren Digital Otomotif: Memahami pergeseran perilaku pembeli mobil yang sudah berubah ke arah digital dan prediksi arah tren otomotif di Indonesia.",
@@ -37,29 +37,16 @@
         "Penerapan Metodologi Gap Analysis: Mempraktikkan pengisian 4 kolom Gap Analysis untuk mengidentifikasi masalah (bottleneck), menentukan target yang realistis, dan menyusun prioritas perbaikan performa."
       ],
       "materials": {
-        "youtubeId": "zRjKjPTmjcs, jH2TYQdd1vQ",
+        "youtubeId": "MhVOfUp6po8",
         "during": [
           {
             "icon": "📊",
             "title": "Materials",
-            "desc": "Sesi 1 - Evaluasi Channel",
-            "url": "https://drive.google.com/file/d/1wkTcW5Ed-2fulRG4l_jcw8RyY7gQk4xd/view"
-          },
-          {
-            "icon": "📝",
-            "title": "Exercise",
-            "desc": "Latihan Sesi 1",
-            "url": "https://docs.google.com/document/d/17si9jBhNHVXSk5X2OrsksdFAe0Xqs6ad/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
+            "desc": "Sesi 1 - Data-Driven Digital Marketing Strategy & AI For Marketing",
+            "url": "https://docs.google.com/presentation/d/1_KG8VZm2daIKBJxXls-QGI8I6fEyfYr9/edit?usp=sharing&ouid=109957538070629950241&rtpof=true&sd=true"
           }
         ],
-        "after": [
-          {
-            "icon": "✅",
-            "title": "Submit attendance and feedback",
-            "desc": "Feedback-CT",
-            "url": "#"
-          }
-        ]
+        "after": []
       }
     },
     "sesi-2": {
